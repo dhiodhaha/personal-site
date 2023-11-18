@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "tailwind": "npx tailwindcss -i ./style.css -o ./globals.css --watch",
+    "dev": "concurrently \"vite\" \"npm run tailwind\"",
     "build": "vite build",
     "preview": "vite preview"
   },
@@ -13,12 +14,16 @@
     "prettier": "^3.1.0",
     "prettier-plugin-tailwindcss": "^0.5.7",
     "tailwindcss": "^3.3.5",
-    "typed.js": "^2.1.0",
-    "vite": "^4.4.5"
+    "vite": "^4.4.5",
+    "webpack-cli": "^5.1.4"
   },
   "main": "main.js",
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "canvas-confetti": "^1.9.1",
+    "typed.js": "^2.1.0"
+  }
 }

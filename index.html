@@ -2,84 +2,178 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Document</title>
+    <link rel="stylesheet" href="globals.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/alohe/emojicloud/emojicloud.css"
+    />
   </head>
-  <body>
+  <body
+    class="backdrop-blur-xl bg-cover bg-fixed bg-center bg-no-repeat bg-[url('/img/backgroundImage.png')]"
+  >
+    <section class="flex flex-col justify-between h-screen items-center">
+      <header class="navBar flex justify-between py-6 px-6 w-full items-center">
+        <div><span class="text-lg font-semibold" id="logoTyped"></span></div>
+        <div class="buttonNavBar items-center flex gap-6">
+          <a
+            class="blogButton text-sm border py-2 px-6 rounded-full xs:max-md:hidden"
+            href="https://blog.dhaf.in"
+            target="_blank"
+            >Blog</a
+          >
+          <a
+            class="border text-sm py-2 px-6 rounded-full bg-white text-zinc-950"
+            href="mailto:dhiodhaha@gmail.com"
+            >Contact</a
+          >
+        </div>
+      </header>
 
-    <header class="flex">
-    <span>
-    It's Dhafin
-    </span>
-    <div>
-    <ul class="flex list-none">
-    <li>About</li>
-    <li>Appreciate</li>
-    <li>Collaborate>
-    </ul>
-    <div>
-    <a href="" class="button //rounded">Blog</a>
-    <a href="" class="button //rounded">Contact</a>
-    </div>
-    </div>
-    </header>
-    
-    <section  class="cardSection">
-    <div>
-    
-    </div>
-    <h1>hello, I'm Dhafin!</h1>
-    <p>Lorem50</p>
-    
-    <div>
-    <h1>What if tech meet art?</h1>
-    <h1 class="typedAnswer text-bold"
-    <p>I am Available to delivere those all things</p>
-    
-    </div class="flex">
-    <img src="img/githubLogo.png>
-    <div>
-    
-    </div>
-    
-    <div>
-    <img src="img/xLogo.png>
-    </div>
-    
-    <div>
-    Let's Collaborate 🤝🏻
-    
-    <a href="button">Achieve more together</a>
-    </div>
-    
-    
-    <div class="projects">
-       <h1>Projects</h1>
-       <h2 class="projectName"></h2>
-    <div class="projectUnorganizedList">
-     <ul class=projectList>
-    <li>Technology</li>
-    <li>Language</li>
-    <li>Research</li>
-    <li>Startup</li>
-    <li>Nonprofit</li>
-    <li>Film</li>
-    <li>Media</li>
-    <li>Impact Hub</li>
-    <li>Social Media</li>
-    <li>Sustainbility</li>
-    </ul>
-    <a href="button">Achieve more together</a>
-    </div>
-    </div>
-    </div>
-    
+      <!-- Card Container Start Here -->
+      <section
+        class="cardContainer grid lg:grid-cols-4 grid-rows-3 gap-3 mb-6 mx-6"
+      >
+        <div class="childCard col-span-4">
+          <div
+            class="imageAvatar flex items-stretch justify-center w-3/6 bg-white bottom-0 left-0"
+          >
+            <img
+              src="https://backend-prod.absurd.design/uploads/ckv2ip2tj001114ll362zgvot.jpg"
+              alt=""
+              class="rounded-full bg-cover justify-center"
+              width="140px"
+              height="140px"
+            />
+          </div>
+          <div class="w-3/4 description flex flex-col justify-around p-8">
+            <h1 class="text-2xl font-semibold">Hello, I am Dhafin!</h1>
+            <div class="descriptionDetails xs:max-md:text-xs w-full">
+              <p>
+                Social Media Handler
+                <i class="emoji-sparkles"></i> <br />Crafting clean, delightful
+                social media, helping people to increase their value
+                <i class="emoji-rocket"></i>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="childCard flex-col xs:max-lg:justify-between lg:justify-between xs:max-md:col-span-4 lg:col-span-2"
+        >
+          <div class="childCardContainerTop">
+            <div class="text-xl">
+              What if tech meets art?
+              <i class="emoji-high-voltage text-2xl"></i>
+            </div>
+            <div class="font-semibold xs:max-md:text-4xl lg:text-2xl">
+              <span id="typedJs"></span>
+            </div>
+          </div>
+          <div class="flex items-baseline">
+            <div
+              class="w-3 h-3 rounded-full animate-pulse mr-1 bg-green-600"
+            ></div>
+            <div class="text-sm">
+              I am available to deliever all those things
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="childCard items-center justify-center xs:max-md:col-span-4 lg:col-span-1"
+        >
+          <a
+            href="https://github.com/dhiodhaha"
+            target="_blank"
+            class="w-full h-full flex justify-center"
+            ><img
+              src="img/githubLogoWhite.svg"
+              alt="Github Logo"
+              width="100px"
+              height="100px"
+          /></a>
+        </div>
+
+        <div
+          class="childCard flex-col xs:max-md:col-span-4 lg:row-span-2 justify-between"
+        >
+          <div class="font-semibold text-2xl">
+            Projects <i class="emoji-fire"></i>
+          </div>
+          <div
+            class="projectList md:max-lg:text-sm xs:max-md:text-xl xs:max-md:flex xs:max-md:flex-wrap py-2"
+          >
+            <p>Technology</p>
+            <span class="slash md:max-xxxl:hidden">&nbsp;/&nbsp;</span>
+            <p>Language</p>
+            <span class="slash md:max-xxxl:hidden">&nbsp;/&nbsp;</span>
+            <p>Research</p>
+            <span class="slash md:max-xxxl:hidden">&nbsp;/&nbsp;</span>
+            <p>Startup</p>
+            <span class="slash md:max-xxxl:hidden">&nbsp;/&nbsp;</span>
+            <p>Nonprofit</p>
+            <span class="slash md:max-xxxl:hidden">&nbsp;/&nbsp;</span>
+            <p>Film</p>
+            <span class="slash md:max-xxxl:hidden">&nbsp;/&nbsp;</span>
+            <p>Media</p>
+            <span class="slash md:max-xxxl:hidden">&nbsp;/&nbsp;</span>
+            <p>Impact Hub</p>
+            <span class="slash md:max-xxxl:hidden">&nbsp;/&nbsp;</span>
+            <p>Organization</p>
+            <span class="slash md:max-xxxl:hidden">&nbsp;/&nbsp;</span>
+            <p>Sustainability</p>
+          </div>
+          <div class="pb-2">
+            <a
+              id="appreciate"
+              class="button border py-2 px-3 text-sm text-center rounded-full xs:max-md:block md:max-xxxl:w-fit xs:max-lg:mt-12 bg-white text-gray-950 cursor-pointer"
+              >Appreciate<i class="emoji-clapping-hands-skin-1"></i
+            ></a>
+          </div>
+        </div>
+
+        <div
+          class="childCard flex items-center justify-center xs:max-md:col-span-4 xs:max-md:h-60"
+        >
+          <a
+            href="https://x.com/dhiodhaha"
+            target="_blank"
+            class="w-full h-full flex justify-center"
+          >
+            <img
+              src="img/xLogoWhite.svg"
+              alt="X Logo Here"
+              width="60px"
+              height="60px"
+          /></a>
+        </div>
+
+        <div
+          class="childCard flex-col xs:max-lg:justify-around lg:justify-between xs:max-md:h-44 xs:max-lg:col-span-4 lg:col-span-2 xs:max-lg:items-center"
+        >
+          <h1 class="text-2xl font-semibold">
+            Let's Collaborate <i class="emoji-handshake-skin-1 text-2xl"></i>
+          </h1>
+          <a
+            href="mailto:dhiodhaha@gmail.com"
+            class="text-sm lg:max-xxxl:w-fit xs:max-lg:w-full xs:max-lg:text-center py-2 px-3 h-fit rounded-full bg-white text-gray-950"
+            >Make art together</a
+          >
+        </div>
+      </section>
+      <footer class="xs:max-lg:mb-44 lg:mb-6">
+        Made with ❤️ for Devscale Bootcamp
+      </footer>
     </section>
-    
-    <footer class=""> Made with ❤️ in Devscale Bootcamp
-    </footer>
-    
-    <script src="dist/output.js"></script>
-    </body>
+    <script type="module" src="main.js"></script>
+  </body>
 </html>
