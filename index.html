@@ -17,170 +17,31 @@
       href="https://cdn.jsdelivr.net/gh/alohe/emojicloud/emojicloud.css"
     />
   </head>
-  <body
+  <!-- <body
     class="bg-cover bg-fixed bg-center bg-no-repeat bg-[url('/img/backgroundImage.png')]"
-  >
-    <section class="flex flex-col justify-between h-screen items-center">
-      <header class="navBar flex justify-between py-6 px-6 w-full items-center">
-        <div><span class="text-lg font-semibold" id="logoTyped"></span></div>
-        <div class="buttonNavBar items-center flex gap-6">
-          <a
-            class="blogButton text-sm border py-2 px-6 rounded-full xs:max-md:hidden"
-            href="https://blog.dhaf.in"
-            target="_blank"
-            >Blog</a
-          >
-          <a
-            class="border flex items-center text-sm py-2 px-6 rounded-full bg-white text-zinc-950"
-            href="mailto:dhiodhaha@gmail.com"
-            >Contact
-            <i><img src="img/chevron-right.svg" width="20px" height="20px" /></i
-          ></a>
-        </div>
-      </header>
-
-      <!-- Card Container Start Here -->
-      <section
-        class="cardContainer grid lg:grid-cols-4 grid-rows-3 gap-3 mb-6 mx-6"
-      >
-        <div class="childCard col-span-4">
+  > -->
+  <body class="bg-orange-50">
+    <section>
+      <div class="px-6 py-32 lg:px-8">
+        <div class="mx-auto max-w-3xl text-base leading-7">
           <div
-            class="imageAvatar flex items-stretch justify-center w-4/6 lg:w-3/6 bottom-0 left-0 hover:shadow-2xltransition"
+            class="text-orange-600 font-medium mt-16 gap-12 text-4xl md:text-6xl"
           >
-            <img
-              src="https://assets-global.website-files.com/64c73d04a946980a4476537e/64d454ec3583c11cf926ec6f_Jumping.svg"
-              alt=""
-              class="bg-cover justify-center"
-              width="140px"
-              height="140px"
-            />
-          </div>
-          <div class="w-3/4 description flex flex-col justify-around p-8">
-            <h1 class="text-2xl font-semibold">Hello, I am Dhafin!</h1>
-            <div class="descriptionDetails xs:max-md:text-xs w-full">
-              <p>
-                Social Media Handler
-                <i class="emoji-sparkles"></i> <br />Crafting clean, delightful
-                social media, helping people to increase their value
-                <i class="emoji-rocket"></i>
-              </p>
+            <div clas="mt-2 group relative w-fit">
+              This page is moved to
+              <a
+                class="text-3xl font-semibold sm:text-4xl text-orange-600 z-10 hover:text-orange-100 hover:bg-orange-600 hover:p-2 hover:shadow-orange-600 group-hover:text-orange-100 transition-all"
+                href="https://dhafin.vercel.app"
+              >
+                dhafin.vercel.app
+              </a>
+              <span
+                class="pointer-events-none absolute -inset-4 -z-10 transform-gpu rounded-sm bg-gradient-to-br from-orange-600 to-orange-700 opacity-5 blur-xl transition-all duration-300 group-hover:opacity-90 group-active:opacity-50 group-hover:-z-10"
+              />
             </div>
           </div>
         </div>
-
-        <div
-          class="childCard flex-col xs:max-lg:justify-between lg:justify-between xs:max-md:col-span-4 lg:col-span-2"
-        >
-          <div class="childCardContainerTop">
-            <div class="text-xl">
-              What if tech meets art?
-              <i class="emoji-high-voltage text-2xl"></i>
-            </div>
-            <div class="font-semibold xs:max-md:text-4xl lg:text-2xl">
-              <span id="typedJs"></span>
-            </div>
-          </div>
-          <div class="flex items-center">
-            <div
-              class="w-2 h-2 rounded-full animate-pulse mr-2 bg-green-400"
-            ></div>
-            <div class="text-sm">
-              I am available to deliever all those things
-            </div>
-          </div>
-        </div>
-
-        <div
-          class="childCard items-center justify-center xs:max-md:col-span-4 lg:col-span-1"
-        >
-          <a
-            href="https://github.com/dhiodhaha"
-            target="_blank"
-            class="w-full h-full flex justify-center"
-            ><img
-              src="img/githubLogoWhite.svg"
-              alt="Github Logo"
-              width="100px"
-              height="100px"
-          /></a>
-        </div>
-
-        <div
-          class="childCard flex-col xs:max-md:col-span-4 lg:row-span-2 justify-between"
-        >
-          <div class="font-semibold text-2xl">
-            Projects <i class="emoji-fire"></i>
-          </div>
-          <div
-            class="projectList md:max-lg:text-sm xs:max-md:text-xl xs:max-md:flex xs:max-md:flex-wrap py-2"
-          >
-            <p>Technology</p>
-            <span class="slash md:max-xxxl:hidden">&nbsp;/&nbsp;</span>
-            <p>Language</p>
-            <span class="slash md:max-xxxl:hidden">&nbsp;/&nbsp;</span>
-            <p>Research</p>
-            <span class="slash md:max-xxxl:hidden">&nbsp;/&nbsp;</span>
-            <p>Startup</p>
-            <span class="slash md:max-xxxl:hidden">&nbsp;/&nbsp;</span>
-            <p>Nonprofit</p>
-            <span class="slash md:max-xxxl:hidden">&nbsp;/&nbsp;</span>
-            <p>Film</p>
-            <span class="slash md:max-xxxl:hidden">&nbsp;/&nbsp;</span>
-            <p>Media</p>
-            <span class="slash md:max-xxxl:hidden">&nbsp;/&nbsp;</span>
-            <p>Impact Hub</p>
-            <span class="slash md:max-xxxl:hidden">&nbsp;/&nbsp;</span>
-            <p>Organization</p>
-            <span class="slash md:max-xxxl:hidden">&nbsp;/&nbsp;</span>
-            <p>Sustainability</p>
-          </div>
-          <div class="pb-2">
-            <a
-              id="appreciate"
-              class="button border py-2 px-3 text-sm text-center rounded-full xs:max-md:block md:max-xxxl:w-fit xs:max-lg:mt-12 bg-white text-gray-950 cursor-pointer"
-              >Appreciate<i class="emoji-clapping-hands-skin-1"></i
-            ></a>
-          </div>
-        </div>
-
-        <div
-          class="childCard flex items-center justify-center xs:max-md:col-span-4 xs:max-md:h-60"
-        >
-          <a
-            href="https://x.com/dhiodhaha"
-            target="_blank"
-            class="w-full h-full flex justify-center"
-          >
-            <img
-              src="img/xLogoWhite.svg"
-              alt="X Logo Here"
-              width="60px"
-              height="60px"
-          /></a>
-        </div>
-
-        <div
-          class="childCard flex-col xs:max-lg:justify-around lg:justify-between xs:max-md:h-44 xs:max-lg:col-span-4 lg:col-span-2 xs:max-lg:items-center"
-        >
-          <h1 class="text-2xl font-semibold">
-            Let's Collaborate <i class="emoji-handshake-skin-1 text-2xl"></i>
-          </h1>
-          <a
-            href="mailto:dhiodhaha@gmail.com"
-            class="text-sm flex xs:max-lg:justify-center lg:max-xxxl:w-fit xs:max-lg:w-full xs:max-lg:text-center-center py-2 px-3 h-fit rounded-full bg-white text-gray-950"
-            >Make art together
-            <i
-              ><img
-                src="img/arrow-up-right.svg"
-                width="20px"
-                height="20px" /></i
-          ></a>
-        </div>
-      </section>
-      <footer class="xs:max-lg:mb-44 lg:mb-6">
-        Made with ❤️ for Devscale Bootcamp
-      </footer>
+      </div>
     </section>
-    <script type="module" src="main.js"></script>
   </body>
 </html>
