@@ -9,7 +9,7 @@ Personal operating base for Dhafin at `dhaf.in`.
 - TypeScript
 - Tailwind CSS v4
 - Cloudflare Pages
-- Sanity, added in a later slice
+- Sanity CMS
 
 ## Commands
 
@@ -18,6 +18,8 @@ bun install
 bun run dev
 bun run build
 bun run preview
+bun run studio
+bun run studio:deploy
 ```
 
 ## Environment
@@ -29,6 +31,29 @@ Copy `.env.example` to `.env` for local development.
 `ASTRO_TELEMETRY_DISABLED=1` keeps local and CI commands from writing telemetry preferences outside the project workspace.
 
 Preview and Sanity tokens are listed now so Cloudflare environment variables have a stable place to land in later slices, but they are not used by the scaffold yet.
+
+`SANITY_STUDIO_PROJECT_ID` and `SANITY_STUDIO_DATASET` wire the local and hosted Studio to the Sanity project. `SANITY_READ_TOKEN` is reserved for later draft preview/runtime reads; published build-time reads should use public dataset access where possible.
+
+## Sanity Studio
+
+The Studio is configured in `sanity.config.ts` with `basePath: "/studio"` and the initial v1 document types:
+
+- Work
+- Post
+- Category
+- Profile
+
+Run local Studio:
+
+```sh
+bun run studio
+```
+
+Deploy hosted Studio:
+
+```sh
+bun run studio:deploy
+```
 
 ## Deployment
 
