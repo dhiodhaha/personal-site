@@ -1,0 +1,31 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Dhafin',
+  description = 'Product-shaped ideas into usable web experiences.',
+} = Astro.props;
+
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://dhaf.in';
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl.toString()} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
