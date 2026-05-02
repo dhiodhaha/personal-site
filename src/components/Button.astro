@@ -1,0 +1,31 @@
+---
+type Variant = 'ghost' | 'category' | 'pill' | 'highlight';
+
+interface Props {
+  href?: string;
+  variant?: Variant;
+}
+
+const { href, variant = 'ghost' } = Astro.props;
+const variantClass =
+  variant === 'ghost'
+    ? ''
+    : {
+        category: 'button-category',
+        pill: 'button-pill',
+        highlight: 'button-highlight',
+      }[variant];
+const classes = ['button', variantClass].filter(Boolean).join(' ');
+---
+
+{
+  href ? (
+    <a class={classes} href={href}>
+      <slot />
+    </a>
+  ) : (
+    <button class={classes} type="button">
+      <slot />
+    </button>
+  )
+}

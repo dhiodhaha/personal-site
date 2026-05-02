@@ -1,0 +1,48 @@
+---
+import ArticleCard from '../components/ArticleCard.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Writing | Dhafin"
+  description="Build logs, product notes, creative process, and personal lessons by Dhafin."
+>
+  <section class="section" aria-labelledby="writing-title">
+    <p class="eyebrow">Writing</p>
+    <h1 id="writing-title" class="display">Build notes with a product lens.</h1>
+    <p class="body-copy">
+      The writing feed starts small: lessons from rebuilding the site, product-building notes,
+      and creative-process reflections.
+    </p>
+  </section>
+
+  <section class="grid-three" aria-label="Planned writing">
+    <ArticleCard
+      title="Why I am rebuilding my site around product building"
+      eyebrow="Product Notes"
+      summary="A positioning note on making selected product work easier to judge in the first ten seconds."
+      tags={['Planned']}
+      href="/writing/why-i-am-rebuilding-my-site-around-product-building"
+      tone="var(--color-muted-taupe)"
+      mark="01"
+    />
+    <ArticleCard
+      title="What video work taught me about product building"
+      eyebrow="Creative Process"
+      summary="How narrative, pacing, and visual judgment from media work transfer into product design."
+      tags={['Planned']}
+      href="/writing/what-video-work-taught-me-about-product-building"
+      tone="var(--color-frost-gray)"
+      mark="02"
+    />
+    <ArticleCard
+      title="How I use AI as a build partner"
+      eyebrow="Build Logs"
+      summary="A practical look at AI-assisted implementation without outsourcing product judgment."
+      tags={['Draft idea']}
+      href="/writing"
+      tone="var(--color-sunshine-yellow)"
+      mark="03"
+    />
+  </section>
+</BaseLayout>

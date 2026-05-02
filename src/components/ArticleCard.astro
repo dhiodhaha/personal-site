@@ -1,0 +1,35 @@
+---
+import Tag from './Tag.astro';
+
+interface Props {
+  title: string;
+  summary: string;
+  eyebrow: string;
+  tags?: string[];
+  href?: string;
+  tone?: string;
+  mark?: string;
+}
+
+const {
+  title,
+  summary,
+  eyebrow,
+  tags = [],
+  href = '#',
+  tone = 'var(--color-muted-taupe)',
+  mark = '01',
+} = Astro.props;
+---
+
+<article class="card">
+  <a class="card-media" href={href} aria-label={title} style={`--media-tone: ${tone};`}>
+    <span class="card-media-mark">{mark}</span>
+  </a>
+  <div class="card-meta">
+    <Tag>{eyebrow}</Tag>
+    {tags.map((tag) => <Tag outline>{tag}</Tag>)}
+  </div>
+  <h3 class="heading"><a class="card-link" href={href}>{title}</a></h3>
+  <p class="body-copy">{summary}</p>
+</article>

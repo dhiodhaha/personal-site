@@ -1,0 +1,106 @@
+---
+import ArticleCard from '../components/ArticleCard.astro';
+import Button from '../components/Button.astro';
+import Tag from '../components/Tag.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Style Preview | Dhafin">
+  <section class="section" aria-labelledby="preview-title">
+    <p class="eyebrow">Editorial design system</p>
+    <h1 id="preview-title" class="display">Sharp structure, warm proof, vivid calls to action.</h1>
+    <p class="body-copy">
+      Implementation preview for global Tailwind v4 tokens, typography, layout utilities, and
+      component primitives.
+    </p>
+  </section>
+
+  <section class="section" aria-labelledby="type-title">
+    <h2 id="type-title" class="heading">Typography</h2>
+    <div class="rule-list">
+      <div class="rule-item">
+        <p class="eyebrow">Display</p>
+        <p class="display">Product-shaped ideas.</p>
+      </div>
+      <div class="rule-item">
+        <p class="eyebrow">Heading</p>
+        <p class="heading">Case-study notes, proof rows, and compact page sections.</p>
+      </div>
+      <div class="rule-item">
+        <p class="eyebrow">Body</p>
+        <p class="body-copy">
+          Bradford fallback uses Georgia for a readable editorial voice while custom fonts are
+          unavailable.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="button-title">
+    <h2 id="button-title" class="heading">Buttons and Tags</h2>
+    <div class="grid-auto">
+      <Button>Ghost button</Button>
+      <Button variant="category">Category label</Button>
+      <Button variant="pill">Pill action</Button>
+      <Button variant="highlight">Highlighted</Button>
+      <Tag>Build Logs</Tag>
+      <Tag outline>Product Notes</Tag>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="color-title">
+    <h2 id="color-title" class="heading">Color</h2>
+    <div class="token-grid">
+      <div
+        class="token-swatch"
+        style="--swatch: var(--color-black-ink); --swatch-text: var(--color-pure-white);"
+      >
+        Black Ink
+      </div>
+      <div
+        class="token-swatch"
+        style="--swatch: var(--color-electric-purple); --swatch-text: var(--color-pure-white);"
+      >
+        Electric Purple
+      </div>
+      <div class="token-swatch" style="--swatch: var(--color-sunshine-yellow);">
+        Sunshine Yellow
+      </div>
+      <div class="token-swatch" style="--swatch: var(--color-muted-taupe);">Muted Taupe</div>
+      <div class="token-swatch" style="--swatch: var(--color-frost-gray);">Frost Gray</div>
+      <div class="token-swatch risograph-band">Risograph Band</div>
+    </div>
+  </section>
+
+  <section class="section section-taupe" aria-labelledby="card-title">
+    <div class="section">
+      <h2 id="card-title" class="heading">Cards</h2>
+      <div class="grid-three">
+        <ArticleCard
+          title="Invitasi"
+          eyebrow="SaaS workflow"
+          summary="Proof-led content card with image-first hierarchy and compact editorial rhythm."
+          tags={['Product direction', 'RSVP']}
+          tone="var(--color-sunshine-yellow)"
+          mark="01"
+        />
+        <ArticleCard
+          title="Devault"
+          eyebrow="Community SaaS"
+          summary="Transparent card primitive, no shadow, no radius, strong spacing and typography."
+          tags={['Dashboard', 'Discord']}
+          tone="var(--color-frost-gray)"
+          mark="02"
+        />
+        <ArticleCard
+          title="Standout Headshot"
+          eyebrow="AI product"
+          summary="Primitive supports selected work, writing cards, and archive listings."
+          tags={['AI', 'Conversion']}
+          tone="var(--color-electric-purple)"
+          mark="03"
+        />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
