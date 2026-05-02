@@ -1,0 +1,6 @@
+# Cloudflare Pages static redirects.
+# Runtime middleware mirrors these rules for requests handled by Pages Functions.
+https://www.dhaf.in/* https://dhaf.in/:splat 301
+https://portfolio.dhaf.in/* https://dhaf.in/work 301
+https://midjourney.dhaf.in/* https://dhaf.in/about 301
+https://video.dhaf.in/* https://dhaf.in/about 301

@@ -30,9 +30,7 @@ Copy `.env.example` to `.env` for local development.
 
 `ASTRO_TELEMETRY_DISABLED=1` keeps local and CI commands from writing telemetry preferences outside the project workspace.
 
-Preview and Sanity tokens are listed now so Cloudflare environment variables have a stable place to land in later slices, but they are not used by the scaffold yet.
-
-`SANITY_STUDIO_PROJECT_ID` and `SANITY_STUDIO_DATASET` wire the local and hosted Studio to the Sanity project. `SANITY_READ_TOKEN` is reserved for later draft preview/runtime reads; published build-time reads should use public dataset access where possible.
+`SANITY_STUDIO_PROJECT_ID` and `SANITY_STUDIO_DATASET` wire the local and hosted Studio to the Sanity project. `SANITY_READ_TOKEN` is used only by authenticated draft preview routes; published build-time reads should use public dataset access where possible.
 
 ## Sanity Studio
 
@@ -61,7 +59,7 @@ This project targets Cloudflare Pages.
 
 Astro 5 uses static output by default; dynamic preview/API routes can be added later with the Cloudflare adapter without the removed `output: "hybrid"` flag.
 
-Astro sessions are set to the in-memory driver for the scaffold so Cloudflare does not require a KV binding before the app actually uses session storage. Preview auth will use signed cookies in a later slice.
+Astro sessions are set to the in-memory driver for the scaffold so Cloudflare does not require a KV binding before the app actually uses session storage. Draft preview auth uses short-lived signed cookies.
 
 Build command:
 
@@ -74,3 +72,22 @@ Build output directory:
 ```sh
 dist
 ```
+
+## Redirects
+
+Cloudflare Pages reads `public/_redirects` into the build output. Attach these custom domains to the same Pages project:
+
+- `dhaf.in`
+- `www.dhaf.in`
+- `portfolio.dhaf.in`
+- `midjourney.dhaf.in`
+- `video.dhaf.in`
+
+Redirect behavior:
+
+- `www.dhaf.in/*` -> `https://dhaf.in/:splat`
+- `portfolio.dhaf.in/*` -> `https://dhaf.in/work`
+- `midjourney.dhaf.in/*` -> `https://dhaf.in/about`
+- `video.dhaf.in/*` -> `https://dhaf.in/about`
+
+`src/middleware.ts` mirrors the same host rules because this project also ships Pages Functions for preview/API routes, and Cloudflare Pages `_redirects` rules do not apply to requests served by Functions.
