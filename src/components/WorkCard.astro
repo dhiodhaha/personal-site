@@ -1,0 +1,85 @@
+---
+import type { PublishedWorkStatus, SanityImage } from '../sanity/published';
+
+import Tag from './Tag.astro';
+
+interface Props {
+  coverImage?: SanityImage;
+  href: string;
+  liveUrl?: string;
+  mark?: string;
+  primaryActionLabel?: string;
+  proofTags: string[];
+  repoUrl?: string;
+  role: string;
+  stack?: string[];
+  status: PublishedWorkStatus;
+  summary: string;
+  title: string;
+  tone?: string;
+}
+
+const {
+  coverImage,
+  href,
+  liveUrl,
+  mark = '01',
+  primaryActionLabel = 'Read proof',
+  proofTags,
+  repoUrl,
+  role,
+  stack = [],
+  status,
+  summary,
+  title,
+  tone = 'var(--color-muted-taupe)',
+} = Astro.props;
+
+const dimensions = coverImage?.asset.metadata?.dimensions;
+const statusLabel =
+  {
+    live: 'Live product',
+    ongoing: 'Ongoing build',
+    paused: 'Paused',
+  }[status] ?? status;
+---
+
+<article class="work-card">
+  <a class="work-card-media" href={href} aria-label={title} style={`--media-tone: ${tone};`}>
+    {
+      coverImage ? (
+        <img
+          src={coverImage.asset.url}
+          alt={coverImage.alt}
+          width={dimensions?.width}
+          height={dimensions?.height}
+          loading="lazy"
+        />
+      ) : (
+        <span class="work-card-mark">{mark}</span>
+      )
+    }
+  </a>
+  <div class="work-card-content">
+    <div class="card-meta">
+      <Tag>{statusLabel}</Tag>
+      {proofTags.map((tag) => <Tag outline>{tag}</Tag>)}
+    </div>
+    <p class="eyebrow">{role}</p>
+    <h3 class="heading"><a class="card-link" href={href}>{title}</a></h3>
+    <p class="body-copy">{summary}</p>
+    {
+      stack.length > 0 && (
+        <p class="work-card-stack">
+          <span>Stack</span>
+          {stack.slice(0, 5).join(' / ')}
+        </p>
+      )
+    }
+    <div class="work-card-actions">
+      <a class="button" href={href}>{primaryActionLabel}</a>
+      {liveUrl && <a class="button" href={liveUrl} target="_blank" rel="noreferrer">Live</a>}
+      {repoUrl && <a class="button" href={repoUrl} target="_blank" rel="noreferrer">Repo</a>}
+    </div>
+  </div>
+</article>

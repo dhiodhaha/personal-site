@@ -1,0 +1,117 @@
+---
+import RichText from '../../components/RichText.astro';
+import Tag from '../../components/Tag.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import {
+  PublishedContentConfigError,
+  getPublishedWorkBySlug,
+  getPublishedWorkStaticPaths,
+} from '../../sanity/published';
+import type { PublishedWorkStatus } from '../../sanity/published';
+
+export async function getStaticPaths() {
+  try {
+    return await getPublishedWorkStaticPaths();
+  } catch (error) {
+    if (error instanceof PublishedContentConfigError) {
+      return [];
+    }
+
+    throw error;
+  }
+}
+
+const { slug } = Astro.params;
+const work = slug ? await getPublishedWorkBySlug(slug) : null;
+
+if (!work) {
+  return Astro.redirect('/work', 302);
+}
+
+const coverDimensions = work.coverImage.asset.metadata?.dimensions;
+const statusLabel =
+  {
+    live: 'Live product',
+    ongoing: 'Ongoing build',
+    paused: 'Paused',
+  }[work.status as PublishedWorkStatus] ?? work.status;
+---
+
+<BaseLayout title={`${work.title} | Dhafin`} description={work.summary}>
+  <article class="section" aria-labelledby="work-title">
+    <header class="editorial-hero">
+      <div class="section">
+        <p class="eyebrow">Selected work / {statusLabel}</p>
+        <h1 id="work-title" class="display">{work.title}</h1>
+        <p class="body-copy">{work.summary}</p>
+        <div class="work-link-row">
+          <a class="button button-highlight" href={work.liveUrl} target="_blank" rel="noreferrer">Open live</a>
+          {work.repoUrl && <a class="button" href={work.repoUrl} target="_blank" rel="noreferrer">Repository</a>}
+        </div>
+      </div>
+      <figure class="work-hero-media">
+        <img
+          src={work.coverImage.asset.url}
+          alt={work.coverImage.alt}
+          width={coverDimensions?.width}
+          height={coverDimensions?.height}
+        />
+        {work.coverImage.caption && <figcaption>{work.coverImage.caption}</figcaption>}
+      </figure>
+    </header>
+
+    <section class="work-proof-grid" aria-label="Product proof">
+      <div class="work-proof-panel">
+        <p class="eyebrow">Role</p>
+        <p class="body-copy">{work.role}</p>
+      </div>
+      <div class="work-proof-panel">
+        <p class="eyebrow">Proof</p>
+        <div class="card-meta">
+          {work.proofTags.map((tag) => <Tag outline>{tag}</Tag>)}
+        </div>
+      </div>
+      {
+        work.stack.length > 0 && (
+          <div class="work-proof-panel">
+            <p class="eyebrow">Stack, secondary</p>
+            <p class="body-copy">{work.stack.join(' / ')}</p>
+          </div>
+        )
+      }
+    </section>
+
+    {
+      work.gallery.length > 0 && (
+        <section class="section" aria-labelledby="work-gallery-title">
+          <p class="eyebrow">Screenshots</p>
+          <h2 id="work-gallery-title" class="heading">The interface does the proof.</h2>
+          <div class="work-gallery">
+            {work.gallery.map((image) => {
+              const dimensions = image.asset.metadata?.dimensions;
+
+              return (
+                <figure>
+                  <img
+                    src={image.asset.url}
+                    alt={image.alt}
+                    width={dimensions?.width}
+                    height={dimensions?.height}
+                    loading="lazy"
+                  />
+                  {image.caption && <figcaption>{image.caption}</figcaption>}
+                </figure>
+              );
+            })}
+          </div>
+        </section>
+      )
+    }
+
+    <section class="section" aria-labelledby="work-note-title">
+      <p class="eyebrow">Build note</p>
+      <h2 id="work-note-title" class="heading">What mattered in the product.</h2>
+      <RichText body={work.body} />
+    </section>
+  </article>
+</BaseLayout>
