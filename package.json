@@ -2,6 +2,9 @@
   "name": "dhafin-personal-site",
   "type": "module",
   "private": true,
+  "engines": {
+    "node": ">=22.12 <23"
+  },
   "scripts": {
     "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
     "build": "ASTRO_TELEMETRY_DISABLED=1 astro check && ASTRO_TELEMETRY_DISABLED=1 astro build",

@@ -22,6 +22,16 @@ bun run studio
 bun run studio:deploy
 ```
 
+## Runtime
+
+Use Node `22.12.0` for Sanity CLI and Studio commands. The installed `sanity` package supports `>=20.19 <22 || >=22.12`, and this repo is pinned to Node 22 LTS to avoid deploy-time React and `styled-components` build issues seen on Node 25.
+
+If you use `nvm`:
+
+```sh
+nvm use
+```
+
 ## Environment
 
 Copy `.env.example` to `.env` for local development.
