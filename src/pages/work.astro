@@ -1,0 +1,47 @@
+---
+import ArticleCard from '../components/ArticleCard.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Work | Dhafin" description="Selected product-building work by Dhafin.">
+  <section class="section" aria-labelledby="work-title">
+    <p class="eyebrow">Selected work</p>
+    <h1 id="work-title" class="display">Product proof before chronology.</h1>
+    <p class="body-copy">
+      Work is ordered by positioning strength: product direction, UX clarity, shipped workflows,
+      and evidence of taste.
+    </p>
+  </section>
+
+  <section class="section section-taupe" aria-label="Selected product cards">
+    <div class="grid-three">
+      <ArticleCard
+        title="Invitasi"
+        eyebrow="Ongoing SaaS"
+        summary="Wedding invitation platform for couples and organizers to publish invitations, manage RSVPs, and grow into planning workflows."
+        tags={['Onboarding', 'RSVP', 'Builder']}
+        href="/work/invitasi"
+        tone="var(--color-sunshine-yellow)"
+        mark="I"
+      />
+      <ArticleCard
+        title="Devault"
+        eyebrow="Live product"
+        summary="Community SaaS for Discord teams to save useful resources from chat and monitor high-signal channels."
+        tags={['Community workflow', 'Dashboard']}
+        href="/work/devault"
+        tone="var(--color-frost-gray)"
+        mark="D"
+      />
+      <ArticleCard
+        title="Standout Headshot"
+        eyebrow="AI product"
+        summary="Professional headshot generation product shaped around fast comprehension and conversion."
+        tags={['AI images', 'Conversion']}
+        href="/work/standout-headshot"
+        tone="var(--color-electric-purple)"
+        mark="S"
+      />
+    </div>
+  </section>
+</BaseLayout>

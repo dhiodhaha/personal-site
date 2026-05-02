@@ -1,0 +1,44 @@
+---
+import Button from '../components/Button.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="About | Dhafin"
+  description="About Dhafin, a product builder focused on design engineering and AI-assisted shipping."
+>
+  <section class="editorial-hero" aria-labelledby="about-title">
+    <div class="section">
+      <p class="eyebrow">About</p>
+      <h1 id="about-title" class="display">Focused product builder with creative range.</h1>
+      <p class="body-copy">
+        I shape, design, and ship 0-to-1 web products. Creative work is supporting proof:
+        taste, pacing, visual judgment, and ability to make abstract ideas concrete.
+      </p>
+      <div>
+        <Button href="/work" variant="pill">View work</Button>
+      </div>
+    </div>
+    <aside class="editorial-panel">
+      <h2 class="heading">Tools and habits</h2>
+      <div class="rule-list">
+        <div class="rule-item">
+          <p class="eyebrow">Build</p>
+          <p class="body-copy">Next.js, Astro, TypeScript, Tailwind CSS, PostgreSQL, Cloudflare.</p>
+        </div>
+        <div class="rule-item">
+          <p class="eyebrow">CMS</p>
+          <p class="body-copy">
+            Sanity for content-heavy launch workflows, Payload when product requirements justify it.
+          </p>
+        </div>
+        <div class="rule-item">
+          <p class="eyebrow">AI</p>
+          <p class="body-copy">
+            Codex and Claude as build partners, with product direction and UX judgment kept explicit.
+          </p>
+        </div>
+      </div>
+    </aside>
+  </section>
+</BaseLayout>

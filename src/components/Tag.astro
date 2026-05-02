@@ -1,0 +1,11 @@
+---
+interface Props {
+  outline?: boolean;
+}
+
+const { outline = false } = Astro.props;
+---
+
+<span class:list={['tag', outline && 'tag-outline']}>
+  <slot />
+</span>
