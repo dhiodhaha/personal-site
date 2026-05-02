@@ -1,0 +1,69 @@
+---
+import RichText from '../../components/RichText.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import {
+  PublishedContentConfigError,
+  getPublishedPostBySlug,
+  getPublishedPostStaticPaths,
+} from '../../sanity/published';
+
+export async function getStaticPaths() {
+  try {
+    return await getPublishedPostStaticPaths();
+  } catch (error) {
+    if (error instanceof PublishedContentConfigError) {
+      return [];
+    }
+
+    throw error;
+  }
+}
+
+const { slug } = Astro.params;
+const post = slug ? await getPublishedPostBySlug(slug) : null;
+
+if (!post) {
+  return Astro.redirect('/writing', 302);
+}
+
+const publishedDate = new Intl.DateTimeFormat('en', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+}).format(new Date(post.publishedAt));
+---
+
+<BaseLayout title={`${post.title} | Dhafin`} description={post.excerpt}>
+  <article class="section" aria-labelledby="post-title">
+    <header class="editorial-hero">
+      <div class="section">
+        <p class="eyebrow">{post.category.title} / {publishedDate}</p>
+        <h1 id="post-title" class="display">{post.title}</h1>
+        <p class="body-copy">{post.excerpt}</p>
+      </div>
+      {
+        post.coverImage ? (
+          <figure class="rich-figure">
+            <img
+              src={post.coverImage.asset.url}
+              alt={post.coverImage.alt}
+              width={post.coverImage.asset.metadata?.dimensions?.width}
+              height={post.coverImage.asset.metadata?.dimensions?.height}
+            />
+            {post.coverImage.caption && <figcaption>{post.coverImage.caption}</figcaption>}
+          </figure>
+        ) : (
+          <aside class="editorial-panel">
+            <p class="heading">Writing as product thinking.</p>
+            <p class="body-copy">
+              Build logs, creative process, and personal lessons stay in one feed so the site
+              stays coherent before it gets comprehensive.
+            </p>
+          </aside>
+        )
+      }
+    </header>
+
+    <RichText body={post.body} />
+  </article>
+</BaseLayout>

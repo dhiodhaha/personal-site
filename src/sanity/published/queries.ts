@@ -14,6 +14,50 @@ export const imageProjection = `{
   }
 }`;
 
+export const bodyProjection = `[]{
+  ...,
+  _type == "imageBlock" => {
+    ...,
+    asset->{
+      _id,
+      url,
+      mimeType,
+      metadata {
+        dimensions {
+          width,
+          height
+        }
+      }
+    }
+  },
+  _type == "gallery" => {
+    ...,
+    images[] {
+      ...,
+      asset->{
+        _id,
+        url,
+        mimeType,
+        metadata {
+          dimensions {
+            width,
+            height
+          }
+        }
+      }
+    }
+  },
+  _type == "workReference" => {
+    ...,
+    work->{
+      _id,
+      title,
+      "slug": slug.current,
+      summary
+    }
+  }
+}`;
+
 export const categoryProjection = `{
   _id,
   title,
@@ -50,7 +94,7 @@ export const workProjection = `{
   gallery[] ${imageProjection},
   liveUrl,
   repoUrl,
-  body,
+  body ${bodyProjection},
   featured,
   sortOrder
 }`;
@@ -76,7 +120,7 @@ export const postProjection = `{
   publishedAt,
   updatedAt,
   coverImage ${imageProjection},
-  body,
+  body ${bodyProjection},
   relatedWork[]->{
     _id,
     title,

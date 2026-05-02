@@ -139,6 +139,106 @@ export const bodyBlocks = defineField({
         },
       },
     }),
+    defineArrayMember({
+      name: 'callout',
+      title: 'Callout',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'tone',
+          title: 'Tone',
+          type: 'string',
+          options: {
+            list: [
+              { title: 'Note', value: 'note' },
+              { title: 'Product', value: 'product' },
+              { title: 'Warning', value: 'warning' },
+            ],
+          },
+          initialValue: 'note',
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'title',
+          title: 'Title',
+          type: 'string',
+        }),
+        defineField({
+          name: 'text',
+          title: 'Text',
+          type: 'text',
+          rows: 3,
+          validation: (Rule) => Rule.required(),
+        }),
+      ],
+    }),
+    defineArrayMember({
+      name: 'codeBlock',
+      title: 'Code block',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'filename',
+          title: 'Filename',
+          type: 'string',
+        }),
+        defineField({
+          name: 'language',
+          title: 'Language',
+          type: 'string',
+        }),
+        defineField({
+          name: 'code',
+          title: 'Code',
+          type: 'text',
+          rows: 12,
+          validation: (Rule) => Rule.required(),
+        }),
+      ],
+      preview: {
+        select: {
+          filename: 'filename',
+          language: 'language',
+        },
+        prepare({ filename, language }) {
+          return {
+            title: filename || 'Code block',
+            subtitle: language,
+          };
+        },
+      },
+    }),
+    defineArrayMember({
+      name: 'workReference',
+      title: 'Work reference',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'work',
+          title: 'Work',
+          type: 'reference',
+          to: [{ type: 'work' }],
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'label',
+          title: 'Label',
+          type: 'string',
+        }),
+      ],
+      preview: {
+        select: {
+          title: 'work.title',
+          subtitle: 'label',
+        },
+        prepare({ title, subtitle }) {
+          return {
+            title: title || 'Work reference',
+            subtitle,
+          };
+        },
+      },
+    }),
   ],
   validation: (Rule) => Rule.required().min(1),
 });
