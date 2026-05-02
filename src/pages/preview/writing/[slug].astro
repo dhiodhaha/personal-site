@@ -1,0 +1,85 @@
+---
+import RichText from '../../../components/RichText.astro';
+import SanityImageView from '../../../components/SanityImage.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import {
+  PREVIEW_COOKIE_NAME,
+  PreviewContentConfigError,
+  getAstroRuntimeEnv,
+  getPreviewPostBySlug,
+  isPreviewAuthorized,
+} from '../../../sanity/preview';
+
+export const prerender = false;
+
+const { slug } = Astro.params;
+
+if (!slug) {
+  return new Response('Missing preview slug.', { status: 400 });
+}
+
+const runtimeEnv = getAstroRuntimeEnv(Astro.locals);
+const previewCookie = Astro.cookies.get(PREVIEW_COOKIE_NAME)?.value;
+
+try {
+  const authorized = await isPreviewAuthorized(previewCookie, 'writing', slug, runtimeEnv);
+
+  if (!authorized) {
+    return new Response('Preview authorization required.', { status: 401 });
+  }
+} catch (error) {
+  if (error instanceof PreviewContentConfigError) {
+    return new Response(error.message, { status: 500 });
+  }
+
+  throw error;
+}
+
+const post = await getPreviewPostBySlug(slug, runtimeEnv);
+
+if (!post) {
+  return new Response('Preview writing document not found.', { status: 404 });
+}
+
+const publishedDate = new Intl.DateTimeFormat('en', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+}).format(new Date(post.publishedAt));
+---
+
+<BaseLayout title={`Preview: ${post.title} | Dhafin`} description={post.excerpt}>
+  <article class="section" aria-labelledby="post-title">
+    <header class="editorial-hero">
+      <div class="section">
+        <p class="eyebrow">Draft preview / {post.category.title} / {publishedDate}</p>
+        <h1 id="post-title" class="display">{post.title}</h1>
+        <p class="body-copy">{post.excerpt}</p>
+      </div>
+      {
+        post.coverImage ? (
+          <figure class="rich-figure">
+            <SanityImageView
+              image={post.coverImage}
+              loading="eager"
+              fetchpriority="high"
+              sizes="(max-width: 760px) 100vw, 42vw"
+              widths={[720, 960, 1200, 1600, 2000]}
+            />
+            {post.coverImage.caption && <figcaption>{post.coverImage.caption}</figcaption>}
+          </figure>
+        ) : (
+          <aside class="editorial-panel">
+            <p class="heading">Writing as product thinking.</p>
+            <p class="body-copy">
+              Build logs, creative process, and personal lessons stay in one feed so the site
+              stays coherent before it gets comprehensive.
+            </p>
+          </aside>
+        )
+      }
+    </header>
+
+    <RichText body={post.body} />
+  </article>
+</BaseLayout>
