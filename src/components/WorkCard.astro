@@ -1,6 +1,7 @@
 ---
 import type { PublishedWorkStatus, SanityImage } from '../sanity/published';
 
+import SanityImageView from './SanityImage.astro';
 import Tag from './Tag.astro';
 
 interface Props {
@@ -35,7 +36,6 @@ const {
   tone = 'var(--color-muted-taupe)',
 } = Astro.props;
 
-const dimensions = coverImage?.asset.metadata?.dimensions;
 const statusLabel =
   {
     live: 'Live product',
@@ -48,13 +48,7 @@ const statusLabel =
   <a class="work-card-media" href={href} aria-label={title} style={`--media-tone: ${tone};`}>
     {
       coverImage ? (
-        <img
-          src={coverImage.asset.url}
-          alt={coverImage.alt}
-          width={dimensions?.width}
-          height={dimensions?.height}
-          loading="lazy"
-        />
+        <SanityImageView image={coverImage} sizes="(max-width: 760px) 100vw, 38vw" widths={[480, 720, 960, 1200]} />
       ) : (
         <span class="work-card-mark">{mark}</span>
       )

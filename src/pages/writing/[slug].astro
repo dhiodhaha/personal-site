@@ -1,5 +1,6 @@
 ---
 import RichText from '../../components/RichText.astro';
+import SanityImageView from '../../components/SanityImage.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import {
   PublishedContentConfigError,
@@ -44,11 +45,12 @@ const publishedDate = new Intl.DateTimeFormat('en', {
       {
         post.coverImage ? (
           <figure class="rich-figure">
-            <img
-              src={post.coverImage.asset.url}
-              alt={post.coverImage.alt}
-              width={post.coverImage.asset.metadata?.dimensions?.width}
-              height={post.coverImage.asset.metadata?.dimensions?.height}
+            <SanityImageView
+              image={post.coverImage}
+              loading="eager"
+              fetchpriority="high"
+              sizes="(max-width: 760px) 100vw, 42vw"
+              widths={[720, 960, 1200, 1600, 2000]}
             />
             {post.coverImage.caption && <figcaption>{post.coverImage.caption}</figcaption>}
           </figure>

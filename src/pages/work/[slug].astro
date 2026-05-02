@@ -1,5 +1,6 @@
 ---
 import RichText from '../../components/RichText.astro';
+import SanityImageView from '../../components/SanityImage.astro';
 import Tag from '../../components/Tag.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import {
@@ -28,7 +29,6 @@ if (!work) {
   return Astro.redirect('/work', 302);
 }
 
-const coverDimensions = work.coverImage.asset.metadata?.dimensions;
 const statusLabel =
   {
     live: 'Live product',
@@ -50,11 +50,12 @@ const statusLabel =
         </div>
       </div>
       <figure class="work-hero-media">
-        <img
-          src={work.coverImage.asset.url}
-          alt={work.coverImage.alt}
-          width={coverDimensions?.width}
-          height={coverDimensions?.height}
+        <SanityImageView
+          image={work.coverImage}
+          loading="eager"
+          fetchpriority="high"
+          sizes="(max-width: 760px) 100vw, 42vw"
+          widths={[720, 960, 1200, 1600, 2000]}
         />
         {work.coverImage.caption && <figcaption>{work.coverImage.caption}</figcaption>}
       </figure>
@@ -88,17 +89,9 @@ const statusLabel =
           <h2 id="work-gallery-title" class="heading">The interface does the proof.</h2>
           <div class="work-gallery">
             {work.gallery.map((image) => {
-              const dimensions = image.asset.metadata?.dimensions;
-
               return (
                 <figure>
-                  <img
-                    src={image.asset.url}
-                    alt={image.alt}
-                    width={dimensions?.width}
-                    height={dimensions?.height}
-                    loading="lazy"
-                  />
+                  <SanityImageView image={image} sizes="(max-width: 760px) 100vw, 50vw" />
                   {image.caption && <figcaption>{image.caption}</figcaption>}
                 </figure>
               );
