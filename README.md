@@ -18,6 +18,8 @@ bun install
 bun run dev
 bun run build
 bun run preview
+bun run cf:pages:dev
+bun run cf:pages:deploy
 bun run studio
 bun run studio:deploy
 ```
@@ -95,6 +97,19 @@ Build output directory:
 
 ```sh
 dist
+```
+
+Pages project settings:
+
+- `Build command`: `bun run build`
+- `Build output directory`: `dist`
+- `Deploy command`: leave empty
+- `Version command`: leave empty
+
+This repo targets Cloudflare Pages, not a standalone Worker deploy. If you want to push a build manually with Wrangler, use:
+
+```sh
+bun run cf:pages:deploy
 ```
 
 ## Redirects

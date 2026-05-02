@@ -10,6 +10,8 @@
     "build": "ASTRO_TELEMETRY_DISABLED=1 astro check && ASTRO_TELEMETRY_DISABLED=1 astro build",
     "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview",
     "check": "ASTRO_TELEMETRY_DISABLED=1 astro check",
+    "cf:pages:deploy": "wrangler pages deploy dist",
+    "cf:pages:dev": "wrangler pages dev dist",
     "studio": "sanity dev",
     "studio:deploy": "sanity deploy"
   },
@@ -26,6 +28,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
     "@sanity/cli": "^6.4.0",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "wrangler": "^4.59.2"
   }
 }
