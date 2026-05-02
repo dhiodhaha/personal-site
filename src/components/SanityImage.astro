@@ -1,0 +1,53 @@
+---
+import { getSanityImageSrcSet, getSanityImageUrl, type SanityImageFit } from '../sanity/published/image';
+import type { SanityImage } from '../sanity/published';
+
+interface Props {
+  class?: string;
+  fetchpriority?: 'auto' | 'high' | 'low';
+  fit?: SanityImageFit;
+  height?: number;
+  image: SanityImage;
+  loading?: 'eager' | 'lazy';
+  quality?: number;
+  sizes?: string;
+  width?: number;
+  widths?: number[];
+}
+
+const {
+  class: className,
+  fetchpriority,
+  fit = 'max',
+  height,
+  image,
+  loading = 'lazy',
+  quality = 82,
+  sizes = '(max-width: 760px) 100vw, 760px',
+  width,
+  widths = [480, 720, 960, 1200, 1600],
+} = Astro.props;
+
+const dimensions = image.asset.metadata?.dimensions;
+const maxResponsiveWidth = Math.max(...widths);
+const fallbackWidth = width ?? Math.min(dimensions?.width ?? maxResponsiveWidth, maxResponsiveWidth);
+const fallbackHeight =
+  height ?? (width && dimensions ? Math.round((width / dimensions.width) * dimensions.height) : undefined);
+const renderedWidth = width ?? dimensions?.width ?? fallbackWidth;
+const renderedHeight = height ?? dimensions?.height ?? fallbackHeight;
+const src = getSanityImageUrl(image, { fit, height: fallbackHeight, quality, width: fallbackWidth });
+const srcset = getSanityImageSrcSet(image, widths, { fit, height, quality, width });
+---
+
+<img
+  class={className}
+  src={src}
+  srcset={srcset}
+  sizes={sizes}
+  alt={image.alt}
+  width={renderedWidth}
+  height={renderedHeight}
+  loading={loading}
+  decoding="async"
+  fetchpriority={fetchpriority}
+/>

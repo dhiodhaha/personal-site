@@ -1,6 +1,8 @@
 ---
 import type { PortableTextBody, SanityImage } from '../sanity/published';
 
+import SanityImageView from './SanityImage.astro';
+
 interface Props {
   body: PortableTextBody;
 }
@@ -205,17 +207,10 @@ const nodes = toNodes(body);
 
       if (node._type === 'imageBlock') {
         const image = node as SanityImage;
-        const dimensions = image.asset?.metadata?.dimensions;
 
         return (
           <figure class="rich-figure">
-            <img
-              src={image.asset.url}
-              alt={image.alt}
-              width={dimensions?.width}
-              height={dimensions?.height}
-              loading="lazy"
-            />
+            <SanityImageView image={image} sizes="(max-width: 760px) 100vw, 760px" />
             {image.caption && <figcaption>{image.caption}</figcaption>}
           </figure>
         );
@@ -227,17 +222,9 @@ const nodes = toNodes(body);
         return (
           <div class="rich-gallery">
             {(gallery.images ?? []).map((image) => {
-              const dimensions = image.asset?.metadata?.dimensions;
-
               return (
                 <figure>
-                  <img
-                    src={image.asset.url}
-                    alt={image.alt}
-                    width={dimensions?.width}
-                    height={dimensions?.height}
-                    loading="lazy"
-                  />
+                  <SanityImageView image={image} sizes="(max-width: 760px) 100vw, 380px" widths={[360, 540, 720, 960]} />
                   {image.caption && <figcaption>{image.caption}</figcaption>}
                 </figure>
               );
