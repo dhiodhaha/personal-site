@@ -1,6 +1,82 @@
 ---
-import ArticleCard from '../components/ArticleCard.astro';
+import WorkCard from '../components/WorkCard.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { PublishedContentConfigError, getPublishedWorks } from '../sanity/published';
+import type { PublishedWork, PublishedWorkStatus, SanityImage } from '../sanity/published';
+
+type WorkListItem = Pick<
+  PublishedWork,
+  'liveUrl' | 'proofTags' | 'repoUrl' | 'role' | 'slug' | 'stack' | 'status' | 'summary' | 'title'
+> & {
+  coverImage?: SanityImage;
+};
+
+const fallbackWorks: WorkListItem[] = [
+  {
+    title: 'Invitasi',
+    slug: 'invitasi',
+    summary:
+      'Wedding invitation platform for couples and organizers to publish invitations, manage RSVPs, and grow into planning workflows.',
+    status: 'ongoing',
+    role: 'Product builder / design engineer',
+    proofTags: ['Onboarding', 'RSVP', 'Builder'],
+    stack: ['Next.js', 'TypeScript', 'Postgres'],
+    liveUrl: 'https://invitasi.app',
+  },
+  {
+    title: 'Devault',
+    slug: 'devault',
+    summary:
+      'Community SaaS for Discord teams to save useful resources from chat and monitor high-signal channels.',
+    status: 'live',
+    role: 'Product builder / UI systems',
+    proofTags: ['Community workflow', 'Dashboard'],
+    stack: ['Next.js', 'TanStack', 'Postgres'],
+    liveUrl: 'https://devault.app',
+  },
+  {
+    title: 'Standout Headshot',
+    slug: 'standout-headshot',
+    summary:
+      'AI image product for job seekers and companies to generate professional headshots with fast comprehension and conversion.',
+    status: 'live',
+    role: 'Creative technologist / product builder',
+    proofTags: ['AI images', 'Conversion'],
+    stack: ['Next.js', 'AI workflow', 'Cloudflare'],
+    liveUrl: 'https://standoutheadshot.com',
+  },
+];
+
+let works: PublishedWork[] = [];
+
+try {
+  works = await getPublishedWorks();
+} catch (error) {
+  if (!(error instanceof PublishedContentConfigError)) {
+    throw error;
+  }
+}
+
+const selectedWorks: WorkListItem[] = works.length > 0 ? works : fallbackWorks;
+const hasPublishedWorks = works.length > 0;
+
+function workTone(index: number): string {
+  return ['var(--color-sunshine-yellow)', 'var(--color-frost-gray)', 'var(--color-electric-purple)'][index % 3];
+}
+
+function workMark(work: WorkListItem, index: number): string {
+  return work.title.charAt(0).toUpperCase() || (index + 1).toString();
+}
+
+function toStatusLabel(status: PublishedWorkStatus): string {
+  return (
+    {
+      live: 'live',
+      ongoing: 'ongoing',
+      paused: 'paused',
+    }[status] ?? status
+  );
+}
 ---
 
 <BaseLayout title="Work | Dhafin" description="Selected product-building work by Dhafin.">
@@ -14,34 +90,26 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </section>
 
   <section class="section section-taupe" aria-label="Selected product cards">
-    <div class="grid-three">
-      <ArticleCard
-        title="Invitasi"
-        eyebrow="Ongoing SaaS"
-        summary="Wedding invitation platform for couples and organizers to publish invitations, manage RSVPs, and grow into planning workflows."
-        tags={['Onboarding', 'RSVP', 'Builder']}
-        href="/work/invitasi"
-        tone="var(--color-sunshine-yellow)"
-        mark="I"
-      />
-      <ArticleCard
-        title="Devault"
-        eyebrow="Live product"
-        summary="Community SaaS for Discord teams to save useful resources from chat and monitor high-signal channels."
-        tags={['Community workflow', 'Dashboard']}
-        href="/work/devault"
-        tone="var(--color-frost-gray)"
-        mark="D"
-      />
-      <ArticleCard
-        title="Standout Headshot"
-        eyebrow="AI product"
-        summary="Professional headshot generation product shaped around fast comprehension and conversion."
-        tags={['AI images', 'Conversion']}
-        href="/work/standout-headshot"
-        tone="var(--color-electric-purple)"
-        mark="S"
-      />
+    <div class="work-list">
+      {
+        selectedWorks.map((work, index) => (
+          <WorkCard
+            title={work.title}
+            summary={work.summary}
+            role={`${work.role} / ${toStatusLabel(work.status)}`}
+            proofTags={work.proofTags}
+            stack={work.stack}
+            status={work.status}
+            href={hasPublishedWorks ? `/work/${work.slug}` : work.liveUrl}
+            liveUrl={hasPublishedWorks ? work.liveUrl : undefined}
+            repoUrl={work.repoUrl}
+            coverImage={work.coverImage}
+            tone={workTone(index)}
+            mark={workMark(work, index)}
+            primaryActionLabel={hasPublishedWorks ? 'Read proof' : 'Open live'}
+          />
+        ))
+      }
     </div>
   </section>
 </BaseLayout>
