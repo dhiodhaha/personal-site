@@ -15,7 +15,6 @@ export default defineConfig({
   title: 'Dhafin',
   projectId,
   dataset,
-  basePath: '/studio',
   plugins: [structureTool()],
   schema: {
     types: schemaTypes,

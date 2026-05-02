@@ -32,9 +32,11 @@ Copy `.env.example` to `.env` for local development.
 
 `SANITY_STUDIO_PROJECT_ID` and `SANITY_STUDIO_DATASET` wire the local and hosted Studio to the Sanity project. `SANITY_READ_TOKEN` is used only by authenticated draft preview routes; published build-time reads should use public dataset access where possible.
 
+Full Sanity, Cloudflare, and Porkbun setup lives in [docs/SETUP.md](docs/SETUP.md).
+
 ## Sanity Studio
 
-The Studio is configured in `sanity.config.ts` with `basePath: "/studio"` and the initial v1 document types:
+The Studio is configured in `sanity.config.ts` for the initial v1 document types:
 
 - Work
 - Post
@@ -47,10 +49,22 @@ Run local Studio:
 bun run studio
 ```
 
+Open:
+
+```txt
+http://localhost:3333
+```
+
 Deploy hosted Studio:
 
 ```sh
 bun run studio:deploy
+```
+
+Use `dhafin` as the Studio hostname so the hosted Studio is available at:
+
+```txt
+https://dhafin.sanity.studio
 ```
 
 ## Deployment
