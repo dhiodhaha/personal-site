@@ -6,12 +6,16 @@
     "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
     "build": "ASTRO_TELEMETRY_DISABLED=1 astro check && ASTRO_TELEMETRY_DISABLED=1 astro build",
     "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview",
-    "check": "ASTRO_TELEMETRY_DISABLED=1 astro check"
+    "check": "ASTRO_TELEMETRY_DISABLED=1 astro check",
+    "studio": "sanity dev",
+    "studio:deploy": "sanity deploy"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.3",
     "@tailwindcss/vite": "^4.2.4",
     "astro": "^5.16.4",
+    "sanity": "^4.22.0",
+    "styled-components": "^6.1.15",
     "tailwindcss": "^4.2.4"
   },
   "devDependencies": {
