@@ -23,9 +23,6 @@
 @import "./components/rule.css";
 @import "./components/rich-text.css";
 
-@import "./pages/home.css";
-@import "./pages/legacy.css";
-
 @import "./interactions.css";
 @import "./responsive.css";
 @import "./motion.css";
