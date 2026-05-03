@@ -1,106 +1,108 @@
 ---
-import ArticleCard from '../components/ArticleCard.astro';
-import Button from '../components/Button.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const projects = [
+  {
+    title: 'Invitasi',
+    meta: 'SaaS workflow - 2024',
+    summary: 'End-to-end event management platform for organizers and attendees.',
+    href: '/work/invitasi',
+    visual: 'events',
+  },
+  {
+    title: 'Devault',
+    meta: 'Team tooling - 2023',
+    summary: 'Secure capture and monitoring spaces for teams that live in chat.',
+    href: '/work/devault',
+    visual: 'vault',
+  },
+  {
+    title: 'Standout Headshot',
+    meta: 'AI product - 2023',
+    summary: 'A conversion-minded image workflow for professional profiles.',
+    href: '/work/standout-headshot',
+    visual: 'headshot',
+  },
+  {
+    title: 'Product Systems Notes',
+    meta: 'Writing - ongoing',
+    summary: 'Short essays on product taste, interface detail, and build loops.',
+    href: '/writing',
+    visual: 'notes',
+  },
+  {
+    title: 'Design Engineering',
+    meta: 'Practice - current',
+    summary: 'Front-end systems, interaction patterns, and launchable UI.',
+    href: '/about',
+    visual: 'studio',
+  },
+  {
+    title: 'AI Assisted Shipping',
+    meta: 'Workflow - current',
+    summary: 'Using agents to move faster without outsourcing product judgment.',
+    href: '/writing',
+    visual: 'shipping',
+  },
+];
 ---
 
 <BaseLayout
   title="Dhafin"
   description="Focused on design engineering, 0-to-1 SaaS workflows, and AI-assisted shipping."
 >
-  <section class="editorial-hero" aria-labelledby="home-title">
-    <div class="section">
-      <p class="eyebrow">Design engineering / 0-to-1 products</p>
-      <h1 id="home-title" class="display">I build product-shaped ideas into usable web experiences.</h1>
-      <p class="body-copy">
-        Focused on SaaS workflows, product direction, interface detail, and AI-assisted shipping.
-      </p>
-      <div>
-        <Button href="/work" variant="pill">View work</Button>
-      </div>
-    </div>
-    <aside class="editorial-panel" aria-label="Profile summary">
-      <p class="heading">Taste, product sense, and fast build loops.</p>
-      <div class="stat-row">
-        <div class="stat-item">
-          <span class="stat-value tabular-nums">03</span>
-          <span class="stat-label">Selected products</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-value">AI</span>
-          <span class="stat-label">Build partner</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-value">UX</span>
-          <span class="stat-label">Primary proof</span>
-        </div>
-      </div>
-      <p class="body-copy">
-        The site favors proof over self-description: product screenshots, case-study notes,
-        launch decisions, and direct contact paths.
-      </p>
-    </aside>
-  </section>
+  <section class="scrapbook-hero" aria-labelledby="home-title">
+    <div class="scrapbook-stage" data-cursor-label="tilt">
+      <article class="paper-card paper-card-main" aria-label="Intro card">
+        <p class="paper-kicker">design engineering / 0-to-1 products</p>
+        <h1 id="home-title">
+          Product ideas into interfaces people can actually use.
+        </h1>
+      </article>
 
-  <section class="section" aria-labelledby="focus-title">
-    <h2 id="focus-title" class="heading">Current position</h2>
-    <div class="rule-list">
-      <div class="rule-item">
-        <p class="eyebrow">Build</p>
-        <p class="body-copy">
-          Shape rough ideas into understandable product flows, especially onboarding,
-          dashboards, and first useful workflows.
+      <article class="paper-card paper-card-note" aria-label="Current focus">
+        <p>
+          Currently shaping SaaS workflows, writing about product craft, and shipping with AI without outsourcing taste.
         </p>
+      </article>
+
+      <div class="paper-card paper-card-name" aria-label="Dhafin mark">DHFN</div>
+
+      <div class="paper-card paper-card-stamp" aria-hidden="true">
+        <span>SHIP</span>
+        <span>CRAFT</span>
+        <span>REPEAT</span>
       </div>
-      <div class="rule-item">
-        <p class="eyebrow">Design</p>
-        <p class="body-copy">
-          Use restrained editorial structure, clear information hierarchy, and product
-          screenshots instead of decorative portfolio effects.
-        </p>
-      </div>
-      <div class="rule-item">
-        <p class="eyebrow">Ship</p>
-        <p class="body-copy">
-          Work quickly with AI-assisted implementation, then make product and UX decisions with
-          deliberate human judgment.
-        </p>
+
+      <div class="paper-card paper-card-doodle" aria-hidden="true">
+        <span class="doodle-flower">✳</span>
+        <span class="doodle-stem">│╲</span>
+        <span class="doodle-ground">⌞⌟</span>
       </div>
     </div>
   </section>
 
-  <section class="section section-taupe" aria-labelledby="work-title">
-    <div class="section">
-      <h2 id="work-title" class="heading">Selected work</h2>
-      <div class="grid-three">
-        <ArticleCard
-          title="Invitasi"
-          eyebrow="SaaS workflow"
-          summary="Wedding invitation platform for polished invitations, RSVP management, and planning workflows."
-          tags={['Product direction', 'Interface design']}
-          href="/work/invitasi"
-          tone="var(--color-sunshine-yellow)"
-          mark="I"
-        />
-        <ArticleCard
-          title="Devault"
-          eyebrow="Community SaaS"
-          summary="Discord resource capture and monitoring workspace for teams that live in chat."
-          tags={['Dashboard UX', 'Product build']}
-          href="/work/devault"
-          tone="var(--color-frost-gray)"
-          mark="D"
-        />
-        <ArticleCard
-          title="Standout Headshot"
-          eyebrow="AI product"
-          summary="Fast professional headshot generation flow shaped around conversion and clarity."
-          tags={['AI workflow', 'UX direction']}
-          href="/work/standout-headshot"
-          tone="var(--color-electric-purple)"
-          mark="S"
-        />
-      </div>
+  <section class="project-wall" aria-labelledby="work-title">
+    <h2 id="work-title" class="sr-only">Selected work</h2>
+    <div class="project-grid">
+      {
+        projects.map((project) => (
+          <a class="project-tile" href={project.href}>
+            <div class={`project-visual project-visual-${project.visual}`} aria-hidden="true">
+              <div class="visual-inner">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+            <p class="project-meta">{project.meta}</p>
+            <h3>{project.title}</h3>
+            <p>{project.summary}</p>
+          </a>
+        ))
+      }
     </div>
   </section>
 </BaseLayout>

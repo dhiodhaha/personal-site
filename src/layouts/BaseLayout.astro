@@ -25,14 +25,17 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl);
     <link rel="canonical" href={canonicalUrl.toString()} />
   </head>
   <body>
+    <div class="custom-cursor" aria-hidden="true">
+      <span class="custom-cursor-dot"></span>
+      <span class="custom-cursor-label">view</span>
+    </div>
     <header class="site-header">
       <div class="page-shell site-header-inner">
-        <a class="site-brand" href="/" aria-label="Homepage">Dhafin</a>
+        <a class="site-brand" href="/" aria-label="Homepage">DHAFIN</a>
         <nav class="site-nav" aria-label="Primary">
-          <a class="site-nav-link" href="/work">Work</a>
-          <a class="site-nav-link" href="/writing">Writing</a>
-          <a class="site-nav-link" href="/about">About</a>
-          <a class="site-nav-link" href="/style-preview">Style</a>
+          <a class="site-nav-link" href="/work">WORK</a>
+          <a class="site-nav-link" href="/writing">PLAYGROUND</a>
+          <a class="site-nav-link" href="/about">ABOUT</a>
         </nav>
       </div>
     </header>
@@ -41,9 +44,14 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl);
     </main>
     <footer class="site-footer">
       <div class="page-shell site-footer-inner">
-        <span>Dhafin</span>
-        <span>Product-shaped ideas into usable web experiences.</span>
+        <span>DHAFIN</span>
+        <nav class="site-footer-links" aria-label="Footer">
+          <a href="/work">WORK</a>
+          <a href="/writing">PLAYGROUND</a>
+          <a href="/about">ABOUT</a>
+        </nav>
       </div>
     </footer>
+    <script is:inline type="module" src="/site-interactions.js"></script>
   </body>
 </html>
