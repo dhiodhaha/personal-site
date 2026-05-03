@@ -1,5 +1,6 @@
 ---
 import ArticleCard from '../components/ArticleCard.astro';
+import { createWritingCards, splitWritingMasonryColumns } from '../features/writing/writingIndex';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { PublishedContentConfigError, getPublishedPosts } from '../sanity/published';
 import type { PublishedPost } from '../sanity/published';
@@ -13,13 +14,15 @@ try {
     throw error;
   }
 }
+
+const masonryColumns = splitWritingMasonryColumns(createWritingCards(posts));
 ---
 
 <BaseLayout
   title="Writing | Dhafin"
   description="Build logs, product notes, creative process, and personal lessons by Dhafin."
 >
-  <section class="section" aria-labelledby="writing-title">
+  <section class="section page-hero" aria-labelledby="writing-title">
     <p class="eyebrow">Writing</p>
     <h1 id="writing-title" class="display">Build notes with a product lens.</h1>
     <p class="body-copy">
@@ -28,51 +31,15 @@ try {
     </p>
   </section>
 
-  <section class="grid-three" aria-label="Published writing">
-    {
-      posts.length > 0 ? (
-        posts.map((post, index) => (
-          <ArticleCard
-            title={post.title}
-            eyebrow={post.category.title}
-            summary={post.excerpt}
-            tags={[new Date(post.publishedAt).getFullYear().toString()]}
-            href={`/writing/${post.slug}`}
-            tone={index % 2 === 0 ? 'var(--color-muted-taupe)' : 'var(--color-frost-gray)'}
-            mark={(index + 1).toString().padStart(2, '0')}
-          />
-        ))
-      ) : (
-        <>
-          <ArticleCard
-            title="Why I am rebuilding my site around product building"
-            eyebrow="Product Notes"
-            summary="A positioning note on making selected product work easier to judge in the first ten seconds."
-            tags={['Planned']}
-            href="/writing/why-i-am-rebuilding-my-site-around-product-building"
-            tone="var(--color-muted-taupe)"
-            mark="01"
-          />
-          <ArticleCard
-            title="What video work taught me about product building"
-            eyebrow="Creative Process"
-            summary="How narrative, pacing, and visual judgment from media work transfer into product design."
-            tags={['Planned']}
-            href="/writing/what-video-work-taught-me-about-product-building"
-            tone="var(--color-frost-gray)"
-            mark="02"
-          />
-          <ArticleCard
-            title="How I use AI as a build partner"
-            eyebrow="Build Logs"
-            summary="A practical look at AI-assisted implementation without outsourcing product judgment."
-            tags={['Draft idea']}
-            href="/writing"
-            tone="var(--color-sunshine-yellow)"
-            mark="03"
-          />
-        </>
-      )
-    }
+  <section class="post-masonry" aria-label="Published writing">
+    {masonryColumns.map((column) => (
+      <div class="post-masonry-column">
+        {column.map((post) => (
+          <div class="post-masonry-item">
+            <ArticleCard {...post} />
+          </div>
+        ))}
+      </div>
+    ))}
   </section>
 </BaseLayout>
