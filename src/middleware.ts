@@ -8,7 +8,9 @@ const LEGACY_HOST_TARGETS: Record<string, string> = {
   'video.dhaf.in': '/about',
 };
 
-export const onRequest = defineMiddleware((context, next) => {
+const HTML_CACHE_CONTROL = 'public, max-age=0, s-maxage=300, stale-while-revalidate=86400';
+
+export const onRequest = defineMiddleware(async (context, next) => {
   const requestUrl = new URL(context.request.url);
 
   if (requestUrl.hostname === `www.${CANONICAL_HOST}`) {
@@ -27,5 +29,19 @@ export const onRequest = defineMiddleware((context, next) => {
     return Response.redirect(redirectUrl, 301);
   }
 
-  return next();
+  const response = await next();
+
+  const isCacheableHtml =
+    context.request.method === 'GET' &&
+    response.status === 200 &&
+    !requestUrl.pathname.startsWith('/api') &&
+    !requestUrl.pathname.startsWith('/preview') &&
+    response.headers.get('content-type')?.includes('text/html') &&
+    !response.headers.has('Cache-Control');
+
+  if (isCacheableHtml) {
+    response.headers.set('Cache-Control', HTML_CACHE_CONTROL);
+  }
+
+  return response;
 });

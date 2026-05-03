@@ -23,6 +23,8 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl);
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl.toString()} />
+    <link rel="preconnect" href="https://cdn.sanity.io" crossorigin />
+    <link rel="dns-prefetch" href="https://cdn.sanity.io" />
   </head>
   <body>
     <div class="custom-cursor" aria-hidden="true">
@@ -52,6 +54,8 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl);
         </nav>
       </div>
     </footer>
-    <script is:inline type="module" src="/site-interactions.js"></script>
+    <script>
+      import '../scripts/site-interactions';
+    </script>
   </body>
 </html>

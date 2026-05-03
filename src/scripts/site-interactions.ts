@@ -1,89 +1,14 @@
 const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-initLinkPrefetch();
-
 if (finePointer && !reducedMotion) {
   initCustomCursor();
   initScrapbookHero();
 }
 
-function initLinkPrefetch() {
-  const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-  const shouldAvoidPrefetch =
-    connection?.saveData || ['slow-2g', '2g'].includes(connection?.effectiveType);
-
-  if (shouldAvoidPrefetch) {
-    return;
-  }
-
-  const prefetchedUrls = new Set();
-
-  const prefetchLink = (link) => {
-    const url = getPrefetchableUrl(link);
-
-    if (!url || prefetchedUrls.has(url.href)) {
-      return;
-    }
-
-    prefetchedUrls.add(url.href);
-
-    const prefetch = document.createElement('link');
-    prefetch.rel = 'prefetch';
-    prefetch.href = url.href;
-    prefetch.as = 'document';
-    document.head.append(prefetch);
-  };
-
-  document.addEventListener(
-    'pointerover',
-    (event) => {
-      if (!(event.target instanceof Element)) return;
-
-      const link = event.target.closest('a[href]');
-      if (link) {
-        prefetchLink(link);
-      }
-    },
-    { passive: true },
-  );
-
-  document.addEventListener('focusin', (event) => {
-    if (!(event.target instanceof Element)) return;
-
-    const link = event.target.closest('a[href]');
-    if (link) {
-      prefetchLink(link);
-    }
-  });
-}
-
-function getPrefetchableUrl(link) {
-  if (
-    link.target === '_blank' ||
-    link.hasAttribute('download') ||
-    link.dataset.prefetch === 'false'
-  ) {
-    return null;
-  }
-
-  const url = new URL(link.href, window.location.href);
-
-  if (
-    url.origin !== window.location.origin ||
-    url.pathname === window.location.pathname ||
-    url.protocol !== 'http:' && url.protocol !== 'https:'
-  ) {
-    return null;
-  }
-
-  url.hash = '';
-  return url;
-}
-
 function initCustomCursor() {
-  const cursor = document.querySelector('.custom-cursor');
-  const cursorLabel = cursor?.querySelector('.custom-cursor-label');
+  const cursor = document.querySelector<HTMLElement>('.custom-cursor');
+  const cursorLabel = cursor?.querySelector<HTMLElement>('.custom-cursor-label');
 
   if (!cursor || !cursorLabel) {
     return;
@@ -115,7 +40,7 @@ function initCustomCursor() {
   document.addEventListener('pointerover', (event) => {
     if (!(event.target instanceof Element)) return;
 
-    const target = event.target.closest('a, button, [data-cursor-label]');
+    const target = event.target.closest<HTMLElement>('a, button, [data-cursor-label]');
     if (!target) return;
 
     cursorLabel.textContent = target.dataset.cursorLabel || 'open';
@@ -125,8 +50,8 @@ function initCustomCursor() {
   document.addEventListener('pointerout', (event) => {
     if (!(event.target instanceof Element)) return;
 
-    const target = event.target.closest('a, button, [data-cursor-label]');
-    if (!target || target.contains(event.relatedTarget)) return;
+    const target = event.target.closest<HTMLElement>('a, button, [data-cursor-label]');
+    if (!target || target.contains(event.relatedTarget as Node)) return;
 
     cursor.classList.remove('is-active');
   });
@@ -135,7 +60,7 @@ function initCustomCursor() {
 }
 
 function initScrapbookHero() {
-  const heroStage = document.querySelector('.scrapbook-stage');
+  const heroStage = document.querySelector<HTMLElement>('.scrapbook-stage');
 
   if (!heroStage) {
     return;
