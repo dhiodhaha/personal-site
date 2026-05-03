@@ -1,13 +1,13 @@
 # Sanity and Cloudflare Setup
 
-This checklist is for launching `dhaf.in` with Sanity-hosted Studio and Cloudflare Pages.
+This checklist is for launching `dhaf.in` with Sanity-hosted Studio and Cloudflare Workers.
 
 ## Target Architecture
 
 ```txt
 Registrar: Porkbun
 DNS: Cloudflare
-Public site: Cloudflare Pages
+Public site: Cloudflare Workers
 CMS data/API: Sanity Content Lake
 CMS admin: Sanity-hosted Studio
 ```
@@ -28,18 +28,17 @@ Required repo files:
 - `sanity.config.ts` loads the Sanity schema and serves Studio at the root path.
 - `sanity.cli.ts` reads project and dataset from environment variables.
 - `astro.config.mjs` uses the Cloudflare adapter.
-- `wrangler.toml` points Cloudflare Pages output to `dist`.
-- `public/_redirects` contains legacy domain redirects.
-- `src/middleware.ts` mirrors redirect behavior for Pages Functions requests.
+- `wrangler.toml` contains the Worker name, compatibility date, and static asset behavior.
+- `src/middleware.ts` handles canonical and legacy host redirects.
 
 Human/dashboard setup still required:
 
 - Create or confirm the Sanity project and dataset.
 - Create a Sanity Viewer token for draft preview.
 - Deploy Sanity Studio to Sanity hosting.
-- Create the Cloudflare Pages project.
+- Create the Cloudflare Workers project/build.
 - Move Porkbun nameservers from Vercel to Cloudflare.
-- Add Cloudflare Pages custom domains.
+- Add Cloudflare Workers custom domains.
 - Create the Cloudflare deploy hook and Sanity webhook.
 
 ## Local Environment
@@ -135,14 +134,14 @@ Name: dhafin-personal-site-preview
 Role: Viewer
 ```
 
-Copy it into local `.env` and later into Cloudflare Pages as `SANITY_READ_TOKEN`.
+Copy it into local `.env` and later into Cloudflare Workers as `SANITY_READ_TOKEN`.
 
-## Cloudflare Pages Setup
+## Cloudflare Workers Setup
 
 Create the project:
 
 ```txt
-Workers & Pages -> Create application -> Pages -> Connect to Git
+Workers & Pages -> Create application -> Workers -> Connect to Git
 ```
 
 Use:
@@ -151,20 +150,15 @@ Use:
 Repository: dhiodhaha/personal-site
 Production branch: main
 Build command: bun run build
-Build output directory: dist
+Deploy command: npx wrangler deploy --config dist/server/wrangler.json
+Version command: npx wrangler versions upload --config dist/server/wrangler.json
 ```
 
-Do not set these in the Cloudflare Pages dashboard:
-
-```txt
-Deploy command: leave empty
-Version command: leave empty
-```
-
-`wrangler deploy` is a Workers command and will fail in a Pages project. For a manual CLI deploy, use:
+For a manual CLI deploy after building locally, use:
 
 ```sh
-bun run cf:pages:deploy
+bun run build
+bun run cf:deploy
 ```
 
 Add production environment variables:
@@ -222,7 +216,7 @@ Expected: Cloudflare nameservers.
 
 ## Custom Domains
 
-In Cloudflare Pages:
+In Cloudflare Workers:
 
 ```txt
 Custom domains -> Set up a domain
@@ -260,7 +254,7 @@ curl -I https://video.dhaf.in
 
 ## Publish Rebuild Hook
 
-In Cloudflare Pages:
+In Cloudflare Workers:
 
 ```txt
 Settings -> Builds -> Deploy hooks -> Add deploy hook
@@ -279,7 +273,7 @@ Project -> Webhooks -> Create webhook
 Use:
 
 ```txt
-Name: Cloudflare Pages production rebuild
+Name: Cloudflare Workers production rebuild
 URL: Cloudflare deploy hook URL
 Method: POST
 Dataset: production
@@ -291,7 +285,7 @@ Do not enable draft or version triggers.
 Final test:
 
 ```txt
-Publish content in Sanity -> Cloudflare Pages deployment starts -> dhaf.in updates after successful build
+Publish content in Sanity -> Cloudflare Workers deployment starts -> dhaf.in updates after successful build
 ```
 
 ## Secrets

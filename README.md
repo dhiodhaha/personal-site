@@ -8,7 +8,7 @@ Personal operating base for Dhafin at `dhaf.in`.
 - Astro
 - TypeScript
 - Tailwind CSS v4
-- Cloudflare Pages
+- Cloudflare Workers
 - Sanity CMS
 
 ## Commands
@@ -18,21 +18,15 @@ bun install
 bun run dev
 bun run build
 bun run preview
-bun run cf:pages:dev
-bun run cf:pages:deploy
+bun run cf:dev
+bun run cf:deploy
 bun run studio
 bun run studio:deploy
 ```
 
 ## Runtime
 
-Use Node `22.12.0` for Sanity CLI and Studio commands. The installed `sanity` package supports `>=20.19 <22 || >=22.12`, and this repo is pinned to Node 22 LTS to avoid deploy-time React and `styled-components` build issues seen on Node 25.
-
-If you use `nvm`:
-
-```sh
-nvm use
-```
+Use Node `20.19` or newer for Astro and Sanity CLI commands.
 
 ## Environment
 
@@ -81,9 +75,7 @@ https://dhafin.sanity.studio
 
 ## Deployment
 
-This project targets Cloudflare Pages.
-
-Astro 5 uses static output by default; dynamic preview/API routes can be added later with the Cloudflare adapter without the removed `output: "hybrid"` flag.
+This project targets Cloudflare Workers through Astro 6 and `@astrojs/cloudflare` v13.
 
 Astro sessions are set to the in-memory driver for the scaffold so Cloudflare does not require a KV binding before the app actually uses session storage. Draft preview auth uses short-lived signed cookies.
 
@@ -99,22 +91,21 @@ Build output directory:
 dist
 ```
 
-Pages project settings:
+Workers build settings:
 
 - `Build command`: `bun run build`
-- `Build output directory`: `dist`
-- `Deploy command`: leave empty
-- `Version command`: leave empty
+- `Deploy command`: `npx wrangler deploy --config dist/server/wrangler.json`
+- `Version command`: `npx wrangler versions upload --config dist/server/wrangler.json`
 
-This repo targets Cloudflare Pages, not a standalone Worker deploy. If you want to push a build manually with Wrangler, use:
+For local manual deployment after `bun run build`, use:
 
 ```sh
-bun run cf:pages:deploy
+bun run cf:deploy
 ```
 
 ## Redirects
 
-Cloudflare Pages reads `public/_redirects` into the build output. Attach these custom domains to the same Pages project:
+Attach these custom domains to the same Worker:
 
 - `dhaf.in`
 - `www.dhaf.in`
@@ -129,4 +120,4 @@ Redirect behavior:
 - `midjourney.dhaf.in/*` -> `https://dhaf.in/about`
 - `video.dhaf.in/*` -> `https://dhaf.in/about`
 
-`src/middleware.ts` mirrors the same host rules because this project also ships Pages Functions for preview/API routes, and Cloudflare Pages `_redirects` rules do not apply to requests served by Functions.
+`src/middleware.ts` handles canonical and legacy host redirects at runtime.
