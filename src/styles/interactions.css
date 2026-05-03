@@ -19,20 +19,6 @@
     color: var(--color-pure-white);
   }
 
-  .style-route:hover {
-    background: rgb(255 255 255 / 10%);
-    transform: translateY(-0.25rem);
-  }
-
-  .work-preview-card:hover {
-    color: var(--color-electric-purple);
-    transform: translateX(0.5rem);
-  }
-
-  .work-preview-card:hover .work-preview-arrow {
-    transform: translateX(0.25rem);
-  }
-
   .work-card:hover .work-card-media {
     box-shadow: 0 0 0 1px rgb(16 22 36 / 18%);
     transform: translateY(-0.12rem);

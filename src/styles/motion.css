@@ -1,17 +1,6 @@
 @media (prefers-reduced-motion: reduce) {
-  .landing-copy,
-  .landing-brief,
-  .style-route,
-  .landing-section,
-  .position-section {
-    animation: none;
-  }
-
   .button,
-  .style-route,
-  .work-preview-card,
-  .paper-card,
-  .work-preview-arrow {
+  .paper-card {
     transition: none;
   }
 

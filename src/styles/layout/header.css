@@ -70,11 +70,6 @@ a.site-nav-cta {
   padding-block: var(--spacing-60) var(--spacing-80);
 }
 
-.site-main:has(.landing-hero) {
-  width: 100%;
-  padding-block: 0;
-}
-
 .site-main:has(.scrapbook-hero) {
   width: 100%;
   padding-block: 0;
