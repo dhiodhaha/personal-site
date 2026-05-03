@@ -1,0 +1,27 @@
+@utility stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: var(--border-ink);
+  border-bottom: var(--border-ink);
+}
+
+@utility stat-item {
+  display: grid;
+  gap: var(--spacing-5);
+  padding: var(--spacing-16);
+}
+
+@utility stat-value {
+  font-family: var(--font-labilvariable);
+  font-size: var(--text-heading);
+  line-height: var(--leading-heading);
+  letter-spacing: var(--tracking-heading);
+}
+
+@utility stat-label {
+  color: var(--color-medium-gray);
+  font-family: var(--font-labil);
+  font-size: var(--text-caption);
+  line-height: var(--leading-caption);
+  letter-spacing: var(--tracking-caption);
+}

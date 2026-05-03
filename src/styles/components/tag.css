@@ -1,0 +1,19 @@
+@utility tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.625rem;
+  border-radius: 0;
+  padding: var(--spacing-5) var(--spacing-10);
+  background: #fffaf0;
+  color: rgb(16 22 36 / 48%);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: var(--text-caption);
+  font-weight: 700;
+  line-height: var(--leading-caption);
+  letter-spacing: var(--tracking-caption);
+}
+
+@utility tag-outline {
+  border: 1px solid rgb(16 22 36 / 14%);
+  background: transparent;
+}

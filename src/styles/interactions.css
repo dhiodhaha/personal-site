@@ -1,0 +1,55 @@
+@media (hover: hover) and (pointer: fine) {
+  .button:hover {
+    @apply button-hover;
+  }
+
+  .work-card .button:hover {
+    background: transparent;
+    color: #ff4617;
+    transform: none;
+  }
+
+  .button-pill:hover {
+    border-color: var(--color-black-ink);
+    background: var(--color-black-ink);
+  }
+
+  .button-highlight:hover {
+    background: var(--color-electric-purple);
+    color: var(--color-pure-white);
+  }
+
+  .style-route:hover {
+    background: rgb(255 255 255 / 10%);
+    transform: translateY(-0.25rem);
+  }
+
+  .work-preview-card:hover {
+    color: var(--color-electric-purple);
+    transform: translateX(0.5rem);
+  }
+
+  .work-preview-card:hover .work-preview-arrow {
+    transform: translateX(0.25rem);
+  }
+
+  .work-card:hover .work-card-media {
+    box-shadow: 0 0 0 1px rgb(16 22 36 / 18%);
+    transform: translateY(-0.12rem);
+  }
+
+  .work-card:hover .heading a {
+    color: #ff4617;
+  }
+
+  .scrapbook-stage:hover .paper-card-main {
+    box-shadow: 0 1.8rem 4rem rgb(16 22 36 / 10%), 0 0 0 1px rgb(16 22 36 / 12%);
+  }
+
+  .scrapbook-stage:hover .paper-card-note,
+  .scrapbook-stage:hover .paper-card-name,
+  .scrapbook-stage:hover .paper-card-stamp,
+  .scrapbook-stage:hover .paper-card-doodle {
+    box-shadow: 0 1rem 2.5rem rgb(16 22 36 / 9%);
+  }
+}

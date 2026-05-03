@@ -1,0 +1,19 @@
+@utility token-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+  gap: var(--spacing-10);
+}
+
+@utility token-swatch {
+  display: grid;
+  min-height: 8rem;
+  align-content: end;
+  border: var(--border-ink);
+  padding: var(--spacing-12);
+  background: var(--swatch);
+  color: var(--swatch-text, var(--color-black-ink));
+  font-family: var(--font-labil);
+  font-size: var(--text-caption);
+  line-height: var(--leading-caption);
+  letter-spacing: var(--tracking-caption);
+}

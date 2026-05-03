@@ -1,0 +1,48 @@
+@utility editorial-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(17rem, 0.95fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+  min-height: auto;
+}
+
+@utility editorial-panel {
+  display: grid;
+  gap: var(--spacing-20);
+  border: 1px solid rgb(16 22 36 / 12%);
+  padding: var(--spacing-20);
+  background: #fffaf0;
+}
+
+.page-hero {
+  position: relative;
+  margin-block: clamp(2rem, 5vw, 4rem);
+  padding: clamp(2rem, 4vw, 3.5rem);
+  background: #fffaf0;
+  box-shadow: 0 0 0 1px rgb(16 22 36 / 10%);
+}
+
+.page-hero::before {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: clamp(1.4rem, 3vw, 3.5rem);
+  background: #ff4617;
+  content: "";
+}
+
+.page-hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.page-hero .display {
+  max-width: 12ch;
+}
+
+.page-hero .body-copy {
+  max-width: 44rem;
+}
+
+.work-wall-section {
+  padding-top: 0;
+}

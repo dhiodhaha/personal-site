@@ -1,0 +1,81 @@
+@utility site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid rgb(16 22 36 / 10%);
+  background: rgb(247 246 243 / 94%);
+  backdrop-filter: blur(10px);
+}
+
+@utility site-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-20);
+  min-height: 3.25rem;
+  padding-block: 0;
+}
+
+@utility site-brand {
+  color: var(--color-black-ink);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: var(--text-caption);
+  font-weight: 700;
+  line-height: var(--leading-meta);
+  letter-spacing: var(--tracking-meta);
+  text-decoration: none;
+  white-space: nowrap;
+  opacity: 0.42;
+}
+
+@utility site-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-30);
+}
+
+@utility site-nav-link {
+  color: rgb(16 22 36 / 42%);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: var(--text-caption);
+  font-weight: 700;
+  line-height: var(--leading-caption);
+  letter-spacing: var(--tracking-caption);
+  text-decoration: none;
+}
+
+@utility site-nav-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.375rem;
+  border-radius: var(--radius-buttons);
+  padding-inline: var(--spacing-20);
+  background: var(--color-black-ink);
+  color: var(--color-pure-white);
+  font-family: var(--font-labil);
+  font-size: var(--text-caption);
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+a.site-nav-cta {
+  color: var(--color-pure-white);
+}
+
+@utility site-main {
+  display: grid;
+  gap: 0;
+  padding-block: var(--spacing-60) var(--spacing-80);
+}
+
+.site-main:has(.landing-hero) {
+  width: 100%;
+  padding-block: 0;
+}
+
+.site-main:has(.scrapbook-hero) {
+  width: 100%;
+  padding-block: 0;
+}
