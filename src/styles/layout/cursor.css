@@ -1,0 +1,63 @@
+.custom-cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 999;
+  display: none;
+  align-items: center;
+  gap: 0.45rem;
+  pointer-events: none;
+  transform: translate3d(-3rem, -3rem, 0);
+  transition: opacity 140ms ease;
+}
+
+.custom-cursor-dot {
+  width: 0.72rem;
+  height: 0.72rem;
+  border: 1px solid rgb(16 22 36 / 42%);
+  border-radius: 999px;
+  background: #ff4617;
+  box-shadow: 0 0 0 0.35rem rgb(255 250 240 / 72%);
+  transform: translate(-50%, -50%);
+  transition: width 160ms ease, height 160ms ease, background-color 160ms ease;
+}
+
+.custom-cursor-label {
+  position: absolute;
+  left: 0.85rem;
+  top: -0.95rem;
+  border: 1px solid rgb(16 22 36 / 18%);
+  padding: 0.18rem 0.38rem;
+  background: #fffaf0;
+  color: rgb(16 22 36 / 64%);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  line-height: 1;
+  opacity: 0;
+  text-transform: uppercase;
+  transform: translateY(0.2rem) rotate(-3deg);
+  transition: opacity 140ms ease, transform 140ms ease;
+}
+
+.custom-cursor-ready,
+.custom-cursor-ready a,
+.custom-cursor-ready button,
+.custom-cursor-ready [data-cursor-label] {
+  cursor: none;
+}
+
+.custom-cursor-ready .custom-cursor {
+  display: flex;
+}
+
+.custom-cursor.is-active .custom-cursor-dot {
+  width: 1.35rem;
+  height: 1.35rem;
+  background: #cddd58;
+}
+
+.custom-cursor.is-active .custom-cursor-label {
+  opacity: 1;
+  transform: translateY(0) rotate(-3deg);
+}

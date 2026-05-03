@@ -1,0 +1,49 @@
+@utility button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  border: 1px solid rgb(16 22 36 / 32%);
+  border-radius: var(--radius-buttons);
+  padding: 0.75rem 1.25rem;
+  background: #fffaf0;
+  color: var(--color-black-ink);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: var(--text-caption);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: var(--tracking-body);
+  text-decoration: none;
+  transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+@utility button-hover {
+  background: var(--color-black-ink);
+  color: var(--color-pure-white);
+  transform: translateY(-1px);
+}
+
+@utility button-category {
+  background: var(--color-muted-taupe);
+}
+
+@utility button-pill {
+  min-height: 2.5rem;
+  border-color: var(--color-black-ink);
+  border-radius: var(--radius-buttons);
+  padding: 0 var(--spacing-20);
+  background: #101624;
+  color: var(--color-pure-white);
+  font-family: var(--font-labil);
+}
+
+a.button-pill {
+  color: var(--color-pure-white);
+}
+
+@utility button-highlight {
+  border-color: var(--color-black-ink);
+  background: #ff4617;
+  color: var(--color-black-ink);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}

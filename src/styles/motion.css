@@ -1,0 +1,10 @@
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .paper-card {
+    transition: none;
+  }
+
+  .custom-cursor {
+    display: none;
+  }
+}

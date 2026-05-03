@@ -1,0 +1,12 @@
+@utility section {
+  display: grid;
+  gap: var(--spacing-20);
+}
+
+@utility section-taupe {
+  margin-inline: calc(50% - 50vw);
+  padding: var(--spacing-60) max(1rem, calc((100vw - var(--page-max-width)) / 2));
+  background: #f7f6f3;
+  content-visibility: auto;
+  contain-intrinsic-size: 48rem;
+}

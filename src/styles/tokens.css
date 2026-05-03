@@ -1,0 +1,92 @@
+:root {
+  color-scheme: light;
+
+  --color-black-ink: #101624;
+  --color-pure-white: #ffffff;
+  --color-frost-gray: #f3f5f5;
+  --color-medium-gray: #596575;
+  --color-muted-taupe: #eef3ef;
+  --color-electric-purple: #2f6253;
+  --color-sunshine-yellow: #e8ca62;
+  --color-deep-indigo: #123b56;
+  --gradient-risograph: linear-gradient(rgb(255 255 255) 20%, rgb(0 0 0 / 8%) 20%);
+
+  --font-bradford: Georgia, "Times New Roman", serif;
+  --font-labilvariable: "Open Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-labil: "Open Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  --text-caption: 0.75rem;
+  --leading-caption: 1.4;
+  --tracking-caption: 0;
+  --text-body: 1rem;
+  --leading-body: 1.55;
+  --tracking-body: 0;
+  --text-meta: 0.8125rem;
+  --leading-meta: 1.45;
+  --tracking-meta: 0;
+  --text-heading: 2rem;
+  --leading-heading: 1.22;
+  --tracking-heading: 0;
+  --text-display: 5.25rem;
+  --leading-display: 0.98;
+  --tracking-display: 0;
+
+  --page-max-width: 1200px;
+  --section-gap: clamp(2.5rem, 7vw, 5rem);
+  --radius-default: 8px;
+  --radius-buttons: 75px;
+  --border-ink: 1px solid var(--color-black-ink);
+  --border-subtle: 1px solid rgb(16 22 36 / 14%);
+}
+
+@theme {
+  --color-black-ink: #101624;
+  --color-pure-white: #ffffff;
+  --color-frost-gray: #f3f5f5;
+  --color-medium-gray: #596575;
+  --color-muted-taupe: #eef3ef;
+  --color-electric-purple: #2f6253;
+  --color-sunshine-yellow: #e8ca62;
+  --color-deep-indigo: #123b56;
+
+  --font-bradford: Georgia, "Times New Roman", serif;
+  --font-labilvariable: "Open Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-labil: "Open Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --text-caption: 0.75rem;
+  --text-body: 1rem;
+  --text-meta: 0.8125rem;
+  --text-heading: 2rem;
+  --text-display: 5.25rem;
+
+  --leading-caption: 1.4;
+  --leading-body: 1.55;
+  --leading-meta: 1.45;
+  --leading-heading: 1.22;
+  --leading-display: 0.98;
+
+  --tracking-caption: 0;
+  --tracking-body: 0;
+  --tracking-meta: 0;
+  --tracking-heading: 0;
+  --tracking-display: 0;
+
+  --spacing: 0.25rem;
+  --spacing-4: 0.25rem;
+  --spacing-5: 0.3125rem;
+  --spacing-8: 0.5rem;
+  --spacing-10: 0.625rem;
+  --spacing-12: 0.75rem;
+  --spacing-13: 0.8125rem;
+  --spacing-15: 0.9375rem;
+  --spacing-16: 1rem;
+  --spacing-20: 1.25rem;
+  --spacing-30: 1.875rem;
+  --spacing-40: 2.5rem;
+  --spacing-60: 3.75rem;
+  --spacing-80: 5rem;
+
+  --radius-full: 75px;
+  --radius-buttons: 75px;
+  --radius-default: 0px;
+}
