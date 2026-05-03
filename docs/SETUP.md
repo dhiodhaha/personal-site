@@ -154,6 +154,19 @@ Build command: bun run build
 Build output directory: dist
 ```
 
+Do not set these in the Cloudflare Pages dashboard:
+
+```txt
+Deploy command: leave empty
+Version command: leave empty
+```
+
+`wrangler deploy` is a Workers command and will fail in a Pages project. For a manual CLI deploy, use:
+
+```sh
+bun run cf:pages:deploy
+```
+
 Add production environment variables:
 
 ```txt

@@ -18,8 +18,20 @@ bun install
 bun run dev
 bun run build
 bun run preview
+bun run cf:pages:dev
+bun run cf:pages:deploy
 bun run studio
 bun run studio:deploy
+```
+
+## Runtime
+
+Use Node `22.12.0` for Sanity CLI and Studio commands. The installed `sanity` package supports `>=20.19 <22 || >=22.12`, and this repo is pinned to Node 22 LTS to avoid deploy-time React and `styled-components` build issues seen on Node 25.
+
+If you use `nvm`:
+
+```sh
+nvm use
 ```
 
 ## Environment
@@ -85,6 +97,19 @@ Build output directory:
 
 ```sh
 dist
+```
+
+Pages project settings:
+
+- `Build command`: `bun run build`
+- `Build output directory`: `dist`
+- `Deploy command`: leave empty
+- `Version command`: leave empty
+
+This repo targets Cloudflare Pages, not a standalone Worker deploy. If you want to push a build manually with Wrangler, use:
+
+```sh
+bun run cf:pages:deploy
 ```
 
 ## Redirects

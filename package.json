@@ -2,26 +2,33 @@
   "name": "dhafin-personal-site",
   "type": "module",
   "private": true,
+  "engines": {
+    "node": ">=22.12 <23"
+  },
   "scripts": {
     "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
     "build": "ASTRO_TELEMETRY_DISABLED=1 astro check && ASTRO_TELEMETRY_DISABLED=1 astro build",
     "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview",
     "check": "ASTRO_TELEMETRY_DISABLED=1 astro check",
+    "cf:pages:deploy": "wrangler pages deploy dist",
+    "cf:pages:dev": "wrangler pages dev dist",
     "studio": "sanity dev",
     "studio:deploy": "sanity deploy"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.3",
-    "@sanity/client": "^7.13.2",
+    "@sanity/client": "^7.22.0",
     "@tailwindcss/vite": "^4.2.4",
     "astro": "^5.16.4",
     "jose": "^6.2.3",
-    "sanity": "^4.22.0",
+    "sanity": "^5.23.0",
     "styled-components": "^6.1.15",
     "tailwindcss": "^4.2.4"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
-    "typescript": "^5.9.3"
+    "@sanity/cli": "^6.4.0",
+    "typescript": "^5.9.3",
+    "wrangler": "^4.87.0"
   }
 }
