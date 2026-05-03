@@ -4,6 +4,7 @@ import { createWritingCards, splitWritingMasonryColumns } from '../features/writ
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { PublishedContentConfigError, getPublishedPosts } from '../sanity/published';
 import type { PublishedPost } from '../sanity/published';
+import '../styles/components/post-masonry.css';
 
 let posts: PublishedPost[] = [];
 
