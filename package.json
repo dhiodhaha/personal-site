@@ -9,6 +9,8 @@
     "check": "ASTRO_TELEMETRY_DISABLED=1 astro check",
     "cf:deploy": "wrangler deploy --config dist/server/wrangler.json",
     "cf:dev": "wrangler dev --config dist/server/wrangler.json",
+    "cf:versions:deploy": "wrangler versions deploy --config dist/server/wrangler.json",
+    "cf:triggers:deploy": "wrangler triggers deploy --config dist/server/wrangler.json",
     "studio": "sanity dev",
     "studio:deploy": "sanity deploy"
   },

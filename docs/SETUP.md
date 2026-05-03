@@ -161,6 +161,18 @@ bun run build
 bun run cf:deploy
 ```
 
+If Cloudflare uploaded a version but did not promote it to production traffic, run:
+
+```sh
+bun run cf:versions:deploy
+```
+
+If Cloudflare reports that route, custom domain, or trigger changes still need to be applied, run:
+
+```sh
+bun run cf:triggers:deploy
+```
+
 Add production environment variables:
 
 ```txt

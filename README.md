@@ -20,6 +20,8 @@ bun run build
 bun run preview
 bun run cf:dev
 bun run cf:deploy
+bun run cf:versions:deploy
+bun run cf:triggers:deploy
 bun run studio
 bun run studio:deploy
 ```
