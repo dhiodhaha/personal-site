@@ -40,9 +40,9 @@ const socialImage = post.coverImage
 ---
 
 <BaseLayout title={post.title} description={post.excerpt} image={socialImage} type="article">
-  <article class="section" aria-labelledby="post-title">
-    <header class="editorial-hero">
-      <div class="section">
+  <article class="section post-detail" aria-labelledby="post-title">
+    <header class="editorial-hero post-detail-hero">
+      <div class="section post-detail-copy">
         <p class="eyebrow">{post.category.title} / {publishedDate}</p>
         <h1 id="post-title" class="display">{post.title}</h1>
         <p class="body-copy">{post.excerpt}</p>

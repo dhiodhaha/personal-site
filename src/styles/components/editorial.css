@@ -14,6 +14,35 @@
   background: #fffaf0;
 }
 
+@utility post-detail {
+  gap: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+@utility post-detail-hero {
+  padding-bottom: clamp(1.5rem, 4vw, 3rem);
+  border-bottom: var(--border-subtle);
+}
+
+@utility post-detail-copy {
+  align-content: start;
+  gap: var(--spacing-16);
+  max-width: 46rem;
+}
+
+.post-detail-copy .display {
+  max-width: 13ch;
+  color: rgb(16 22 36 / 72%);
+  font-size: clamp(3.1rem, 6vw, 5.7rem);
+  line-height: 0.96;
+}
+
+.post-detail-copy .body-copy {
+  max-width: 42rem;
+  color: rgb(16 22 36 / 56%);
+  font-size: clamp(1.06rem, 1.4vw, 1.22rem);
+  line-height: 1.5;
+}
+
 .page-hero {
   position: relative;
   margin-block: clamp(2rem, 5vw, 4rem);
