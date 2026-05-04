@@ -1,7 +1,7 @@
 @utility rich-text {
   display: grid;
-  gap: var(--spacing-20);
-  max-width: 760px;
+  gap: var(--spacing-30);
+  width: min(100%, 42rem);
 }
 
 .rich-text > p,
@@ -10,27 +10,31 @@
 .rich-callout p {
   margin: 0;
   color: var(--color-black-ink);
-  font-family: var(--font-bradford);
-  font-size: var(--text-body);
-  line-height: 1.7;
+  font-family: var(--font-labil);
+  font-size: clamp(1.03rem, 1vw, 1.08rem);
+  line-height: 1.72;
   letter-spacing: var(--tracking-body);
+  text-wrap: pretty;
 }
 
 @utility rich-heading {
-  margin: var(--spacing-20) 0 0;
-  font-family: var(--font-labilvariable);
-  font-size: var(--text-heading);
+  margin: var(--spacing-30) 0 0;
+  max-width: 17ch;
+  color: rgb(16 22 36 / 72%);
+  font-family: var(--font-bradford);
+  font-size: clamp(2rem, 4vw, 3.35rem);
   font-weight: 400;
-  line-height: var(--leading-heading);
+  line-height: 1.02;
   letter-spacing: var(--tracking-heading);
+  text-wrap: balance;
 }
 
 @utility rich-subheading {
-  margin: var(--spacing-10) 0 0;
+  margin: var(--spacing-20) 0 0;
   font-family: var(--font-labil);
-  font-size: var(--text-body);
-  font-weight: 500;
-  line-height: var(--leading-body);
+  font-size: var(--text-meta);
+  font-weight: 700;
+  line-height: var(--leading-meta);
   letter-spacing: var(--tracking-meta);
   text-transform: uppercase;
 }
@@ -42,16 +46,18 @@
 }
 
 @utility rich-quote {
-  border-left: 4px solid var(--color-electric-purple);
-  padding-left: var(--spacing-20);
+  border-left: 0.25rem solid var(--color-electric-purple);
+  padding: var(--spacing-8) 0 var(--spacing-8) var(--spacing-20);
   color: var(--color-medium-gray);
-  font-size: 1.25rem;
+  font-family: var(--font-bradford);
+  font-size: clamp(1.3rem, 2.5vw, 1.85rem);
+  line-height: 1.25;
 }
 
 @utility rich-figure {
   display: grid;
   gap: var(--spacing-8);
-  margin: var(--spacing-20) 0;
+  margin: var(--spacing-10) 0;
 }
 
 .rich-figure img,
@@ -102,6 +108,11 @@
   border: var(--border-ink);
   padding: var(--spacing-20);
   background: var(--color-muted-taupe);
+}
+
+.rich-callout p {
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
 }
 
 @utility rich-callout-product {

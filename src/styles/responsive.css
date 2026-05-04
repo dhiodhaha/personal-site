@@ -70,6 +70,23 @@
     min-height: auto;
   }
 
+  .post-detail {
+    gap: var(--spacing-40);
+  }
+
+  .post-detail-hero {
+    gap: var(--spacing-30);
+  }
+
+  .post-detail-copy .display {
+    max-width: 12ch;
+  }
+
+  .rich-text {
+    gap: var(--spacing-20);
+    width: 100%;
+  }
+
   .stat-row {
     grid-template-columns: 1fr;
   }
