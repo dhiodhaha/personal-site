@@ -48,7 +48,7 @@ const publishedDate = new Intl.DateTimeFormat('en', {
 }).format(new Date(post.publishedAt));
 ---
 
-<BaseLayout title={`Preview: ${post.title} | Dhafin`} description={post.excerpt}>
+<BaseLayout title={`Preview: ${post.title}`} description={post.excerpt} noindex>
   <article class="section" aria-labelledby="post-title">
     <header class="editorial-hero">
       <div class="section">

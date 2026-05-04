@@ -1,4 +1,5 @@
 export { PublishedContentConfigError, PublishedContentError } from './errors';
+export { getSanityImageSrcSet, getSanityImageUrl } from './image';
 export {
   getPublishedPostBySlug,
   getPublishedPosts,

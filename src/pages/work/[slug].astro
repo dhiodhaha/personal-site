@@ -7,6 +7,7 @@ import {
   PublishedContentConfigError,
   getPublishedWorkBySlug,
   getPublishedWorkStaticPaths,
+  getSanityImageUrl,
 } from '../../sanity/published';
 import type { PublishedWorkStatus } from '../../sanity/published';
 
@@ -37,7 +38,11 @@ const statusLabel =
   }[work.status as PublishedWorkStatus] ?? work.status;
 ---
 
-<BaseLayout title={`${work.title} | Dhafin`} description={work.summary}>
+<BaseLayout
+  title={work.title}
+  description={work.summary}
+  image={getSanityImageUrl(work.coverImage, { fit: 'crop', height: 630, width: 1200 })}
+>
   <article class="section" aria-labelledby="work-title">
     <header class="editorial-hero">
       <div class="section">

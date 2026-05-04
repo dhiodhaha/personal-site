@@ -6,6 +6,7 @@ import {
   PublishedContentConfigError,
   getPublishedPostBySlug,
   getPublishedPostStaticPaths,
+  getSanityImageUrl,
 } from '../../sanity/published';
 
 export async function getStaticPaths() {
@@ -32,9 +33,13 @@ const publishedDate = new Intl.DateTimeFormat('en', {
   month: 'long',
   year: 'numeric',
 }).format(new Date(post.publishedAt));
+
+const socialImage = post.coverImage
+  ? getSanityImageUrl(post.coverImage, { fit: 'crop', height: 630, width: 1200 })
+  : undefined;
 ---
 
-<BaseLayout title={`${post.title} | Dhafin`} description={post.excerpt}>
+<BaseLayout title={post.title} description={post.excerpt} image={socialImage} type="article">
   <article class="section" aria-labelledby="post-title">
     <header class="editorial-hero">
       <div class="section">

@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@astrojs/cloudflare": "^13.3.0",
+    "@astrojs/sitemap": "^3.7.2",
     "@sanity/client": "^7.22.0",
     "@tailwindcss/vite": "^4.2.4",
     "astro": "^6.2.1",
