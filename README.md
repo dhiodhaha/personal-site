@@ -40,6 +40,8 @@ Copy `.env.example` to `.env` for local development.
 
 `SANITY_STUDIO_PROJECT_ID` and `SANITY_STUDIO_DATASET` wire the local and hosted Studio to the Sanity project. `SANITY_READ_TOKEN` is used only by authenticated draft preview routes; published build-time reads should use public dataset access where possible.
 
+`SANITY_WRITE_TOKEN` is only needed locally when running `bun run seed:legacy-posts` to upsert legacy-derived Playground/Writing posts into Sanity.
+
 Full Sanity, Cloudflare, and Porkbun setup lives in [docs/SETUP.md](docs/SETUP.md).
 
 ## Sanity Studio
