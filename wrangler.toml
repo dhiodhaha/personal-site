@@ -4,3 +4,28 @@ compatibility_date = "2026-05-02"
 [assets]
 directory = "dist"
 not_found_handling = "single-page-application"
+
+[[routes]]
+pattern = "dhaf.in"
+custom_domain = true
+zone_name = "dhaf.in"
+
+[[routes]]
+pattern = "www.dhaf.in"
+custom_domain = true
+zone_name = "dhaf.in"
+
+[[routes]]
+pattern = "portfolio.dhaf.in"
+custom_domain = true
+zone_name = "dhaf.in"
+
+[[routes]]
+pattern = "video.dhaf.in"
+custom_domain = true
+zone_name = "dhaf.in"
+
+[[routes]]
+pattern = "midjourney.dhaf.in"
+custom_domain = true
+zone_name = "dhaf.in"
