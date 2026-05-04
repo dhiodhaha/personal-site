@@ -5,7 +5,6 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import {
   PREVIEW_COOKIE_NAME,
   PreviewContentConfigError,
-  getAstroRuntimeEnv,
   getPreviewPostBySlug,
   isPreviewAuthorized,
 } from '../../../sanity/preview';
@@ -18,11 +17,10 @@ if (!slug) {
   return new Response('Missing preview slug.', { status: 400 });
 }
 
-const runtimeEnv = getAstroRuntimeEnv(Astro.locals);
 const previewCookie = Astro.cookies.get(PREVIEW_COOKIE_NAME)?.value;
 
 try {
-  const authorized = await isPreviewAuthorized(previewCookie, 'writing', slug, runtimeEnv);
+  const authorized = await isPreviewAuthorized(previewCookie, 'writing', slug);
 
   if (!authorized) {
     return new Response('Preview authorization required.', { status: 401 });
@@ -35,7 +33,7 @@ try {
   throw error;
 }
 
-const post = await getPreviewPostBySlug(slug, runtimeEnv);
+const post = await getPreviewPostBySlug(slug);
 
 if (!post) {
   return new Response('Preview writing document not found.', { status: 404 });

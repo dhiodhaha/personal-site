@@ -1,3 +1,9 @@
+import {
+  SANITY_API_VERSION,
+  SANITY_STUDIO_DATASET,
+  SANITY_STUDIO_PROJECT_ID,
+} from 'astro:env/server';
+
 import { PublishedContentConfigError } from './errors';
 
 export type PublishedSanityEnv = {
@@ -6,19 +12,14 @@ export type PublishedSanityEnv = {
   projectId: string;
 };
 
-const DEFAULT_API_VERSION = '2025-02-19';
-const DEFAULT_DATASET = 'production';
-
 export function getPublishedSanityEnv(): PublishedSanityEnv {
-  const projectId = process.env.SANITY_STUDIO_PROJECT_ID;
-
-  if (!projectId) {
+  if (!SANITY_STUDIO_PROJECT_ID) {
     throw new PublishedContentConfigError('Missing SANITY_STUDIO_PROJECT_ID.');
   }
 
   return {
-    apiVersion: process.env.SANITY_API_VERSION ?? DEFAULT_API_VERSION,
-    dataset: process.env.SANITY_STUDIO_DATASET ?? DEFAULT_DATASET,
-    projectId,
+    apiVersion: SANITY_API_VERSION,
+    dataset: SANITY_STUDIO_DATASET,
+    projectId: SANITY_STUDIO_PROJECT_ID,
   };
 }

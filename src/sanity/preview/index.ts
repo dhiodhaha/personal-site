@@ -6,6 +6,6 @@ export {
   verifyPreviewToken,
 } from './auth';
 export type { PreviewContentType, PreviewTokenPayload } from './auth';
-export { PreviewContentConfigError, getAstroRuntimeEnv, getPreviewSanityEnv } from './env';
+export { PreviewContentConfigError, getPreviewSanityEnv } from './env';
 export type { PreviewSanityEnv, RuntimeEnv } from './env';
 export { getPreviewPostBySlug, getPreviewWorkBySlug } from './fetch';
