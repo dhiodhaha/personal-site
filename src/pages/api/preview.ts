@@ -5,7 +5,6 @@ import {
   PREVIEW_MAX_AGE_SECONDS,
   PreviewContentConfigError,
   createPreviewToken,
-  getAstroRuntimeEnv,
   getPreviewSanityEnv,
   type PreviewContentType,
 } from '../../sanity/preview';
@@ -38,8 +37,7 @@ function safeEqual(left: string, right: string): boolean {
   return mismatch === 0;
 }
 
-export const GET: APIRoute = async ({ cookies, locals, redirect, request }) => {
-  const runtimeEnv = getAstroRuntimeEnv(locals);
+export const GET: APIRoute = async ({ cookies, redirect, request }) => {
   const url = new URL(request.url);
   const secret = url.searchParams.get('secret');
   const slug = url.searchParams.get('slug');
@@ -50,13 +48,13 @@ export const GET: APIRoute = async ({ cookies, locals, redirect, request }) => {
   }
 
   try {
-    const { previewSecret } = getPreviewSanityEnv(runtimeEnv);
+    const { previewSecret } = getPreviewSanityEnv();
 
     if (!safeEqual(secret, previewSecret)) {
       return new Response('Invalid preview secret.', { status: 401 });
     }
 
-    const token = await createPreviewToken({ slug, type }, runtimeEnv);
+    const token = await createPreviewToken({ slug, type });
 
     cookies.set(PREVIEW_COOKIE_NAME, token, {
       httpOnly: true,
