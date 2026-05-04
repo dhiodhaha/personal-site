@@ -1,6 +1,12 @@
 name = "dhafin-personal-site"
 compatibility_date = "2026-05-02"
 
+[vars]
+PUBLIC_SITE_URL = "https://dhaf.in"
+SANITY_STUDIO_PROJECT_ID = "a7az8pap"
+SANITY_STUDIO_DATASET = "production"
+SANITY_API_VERSION = "2025-02-19"
+
 [assets]
 directory = "dist"
 not_found_handling = "single-page-application"
