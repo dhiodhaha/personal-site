@@ -58,6 +58,7 @@ BUN_VERSION=1.3.5
 
 PREVIEW_SECRET=generated_secret
 SANITY_READ_TOKEN=viewer_token_from_sanity
+SANITY_WRITE_TOKEN=editor_token_from_sanity
 
 SANITY_STUDIO_PROJECT_ID=project_id_from_sanity_manage
 SANITY_STUDIO_DATASET=production
@@ -135,6 +136,22 @@ Role: Viewer
 ```
 
 Copy it into local `.env` and later into Cloudflare Workers as `SANITY_READ_TOKEN`.
+
+10. Create a local-only seed token if you want to import legacy content:
+
+```txt
+API -> Tokens -> Add API token
+Name: dhafin-personal-site-seed
+Role: Editor
+```
+
+Put it in local `.env` as `SANITY_WRITE_TOKEN`. Do not add it to Cloudflare unless a production build command explicitly needs to write content, which this site does not.
+
+Then run:
+
+```sh
+bun run seed:legacy-posts
+```
 
 ## Cloudflare Workers Setup
 
