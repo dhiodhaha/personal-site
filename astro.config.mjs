@@ -4,6 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 import { defineConfig, sessionDrivers } from 'astro/config';
 
 export default defineConfig({
+  output: 'server',
   site: process.env.PUBLIC_SITE_URL || 'https://dhaf.in',
   integrations: [sitemap()],
   prefetch: {
